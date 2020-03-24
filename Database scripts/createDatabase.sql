@@ -1,0 +1,97 @@
+CREATE TABLE Address (
+AddressID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+City VARCHAR(100) NOT NULL,
+Street VARCHAR(100),
+HomeNumber VARCHAR(5) NOT NULL,
+FlatNumber INT,
+ZipCode VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE Customer (
+Email VARCHAR(80) PRIMARY KEY NOT NULL,
+FirstName VARCHAR(40) NOT NULL,
+Surname VARCHAR(40) NOT NULL,
+Id_address INT NOT NULL,
+Password VARCHAR(16) NOT NULL,
+PhoneNumber VARCHAR(12) NOT NULL,
+CreditCardNumber VARCHAR(16),
+FOREIGN KEY (Id_address) REFERENCES Address(AddressID)
+);
+
+CREATE TABLE Vehicle (
+VIN_Number VARCHAR(17) NOT NULL PRIMARY KEY,
+VehicleName VARCHAR(30) NOT NULL,
+VehicleModel VARCHAR(20) NOT NULL,
+Version FLOAT NOT NULL,
+YearOfProduction INT NOT NULL,
+EngineCapacity INT NOT NULL,
+Fuel VARCHAR(20) NOT NULL,
+Color VARCHAR(20),
+Type VARCHAR(20) NOT NULL,
+Id_customer VARCHAR(80) NOT NULL,
+FOREIGN KEY (Id_customer) REFERENCES Customer(Email)
+);
+
+CREATE TABLE Workshop (
+NIP VARCHAR(10) NOT NULL PRIMARY KEY,
+WorkshopName VARCHAR(255) NOT NULL,
+Category VARCHAR(50) NOT NULL,
+Id_address INT NOT NULL,
+Password VARCHAR(16) NOT NULL,
+Description TEXT,
+FOREIGN KEY (Id_address) REFERENCES Address(AddressID)
+);
+
+CREATE TABLE Advertisement (
+AdvertisementID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+Id_workshop VARCHAR(10) NOT NULL,
+Rate FLOAT,
+FOREIGN KEY (Id_workshop) REFERENCES Workshop(NIP)
+);
+
+CREATE TABLE Comment (
+CommentID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+Id_advertisement INT NOT NULL,
+Id_customer VARCHAR(80) NOT NULL,
+CommentContent TEXT,
+FOREIGN KEY (Id_advertisement) REFERENCES Advertisement(AdvertisementID),
+FOREIGN KEY (Id_customer) REFERENCES Customer(Email)
+);
+
+CREATE TABLE Service (
+ServiceID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+ServiceName VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE OfferedServices (
+Id_service INT NOT NULL,
+Id_workshop VARCHAR(10) NOT NULL,
+Price DECIMAL(8,2) NOT NULL,
+ServiceDurationTime VARCHAR(60) NOT NULL,
+FOREIGN KEY (Id_service) REFERENCES Service(ServiceID),
+FOREIGN KEY (Id_workshop) REFERENCES Workshop(NIP),
+UNIQUE(Id_service, Id_workshop)
+);
+
+CREATE TABLE Visit (
+VisitID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+Id_workshop VARCHAR(10) NOT NULL,
+Id_customer VARCHAR(80) NOT NULL,
+Id_vehicle VARCHAR(17) NOT NULL,
+VisitDate DATETIME NOT NULL,
+VisitDescription TEXT NOT NULL,
+VisitDurationTime VARCHAR(60) NOT NULL,
+TotalPrice DECIMAL(8,2) NOT NULL,
+PaymentMethod VARCHAR(20) NOT NULL,
+FOREIGN KEY (Id_workshop) REFERENCES Workshop(NIP),
+FOREIGN KEY (Id_customer) REFERENCES Customer(Email),
+FOREIGN KEY (Id_vehicle) REFERENCES Vehicle(VIN_Number)
+);
+
+CREATE TABLE ServicesInVisit (
+ServicesInVisitID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+Id_visit INT NOT NULL,
+Id_service INT NOT NULL,
+FOREIGN KEY (Id_visit) REFERENCES Visit(VisitID),
+FOREIGN KEY (Id_service) REFERENCES Service(ServiceID)
+)
