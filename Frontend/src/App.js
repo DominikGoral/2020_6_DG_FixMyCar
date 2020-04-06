@@ -1,15 +1,51 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import logo from './logo.svg';
-import Aux from './Auxiliary'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import Layout from './hoc/Layout/Layout'
+import Workshop from './containers/Workshop/Workshop'
+import Auth from './containers/Auth/Auth'
+import Logout from './containers/Auth/Logout/Logout'
 import './App.css';
 
 class App extends Component {
-  state = {
-    ServiceName: '',
-    services: []
-  }
+  render() {
+    let routes = (
+      <Switch>
+        <Route path="/auth" component={Auth} />
+        <Route path="/"/>
+        <Redirect to="/" />
+      </Switch>
+    )
+    
+    if (this.props.isAuthenticated) {
+      routes = (
+        <Switch>
+          <Route path="/workshop" component={Workshop}/>
+          <Route path="/logout" component={Logout}/>
+          <Redirect to="/" />
+        </Switch>
+      )
+    }
 
+    return(
+      <div>
+        <Layout>
+          {routes}
+        </Layout>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App))
+/*
   componentDidMount() {
     axios.get('http://localhost:8001/')
       .then(res => {
@@ -28,32 +64,7 @@ class App extends Component {
         console.log(service)
       })
   }
-
-  render() {
-    return (
-      <Aux>
-        <div style={{textAlign: "center"}}>
-          <h1>
-              DODAJ NOWĄ USŁUGĘ
-            </h1>
-          <form>
-            <label>Nazwa usługi </label>
-            <textarea rows="5" cols="50" onChange={(event) => this.setState({ServiceName: event.target.value})}/>
-            <button type="submit" onClick={this.postDataHandler}>Dodaj usługę</button>
-          </form>
-        </div>
-        <div style={{textAlign: "center"}}>
-          <h1>
-            WSZYSTKIE USŁUGI
-          </h1>
-          <div className="services">
-            {this.state.services.map(service => <li>{service.ServiceName}</li>)}
-          </div>
-        </div>
-      </Aux>
-      
-    );
-  }
 }
 
 export default App;
+*/
