@@ -14,7 +14,7 @@ class App extends Component {
       <Switch>
         <Route path="/auth" component={Auth} />
         <Route path="/"/>
-        <Redirect to="/" />
+        <Redirect to="/auth" />
       </Switch>
     )
     
