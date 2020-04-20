@@ -18,10 +18,18 @@ class App extends Component {
       </Switch>
     )
     
-    if (this.props.isAuthenticated) {
+    if (this.props.isAuthenticated && this.props.userType === 'mechanic') {
       routes = (
         <Switch>
           <Route path="/workshop" component={Workshop}/>
+          <Route path="/logout" component={Logout}/>
+          <Redirect to="/" />
+        </Switch>
+      )
+    } else if (this.props.isAuthenticated && this.props.userType === 'customer') {
+      routes = (
+        <Switch>
+          
           <Route path="/logout" component={Logout}/>
           <Redirect to="/" />
         </Switch>
@@ -40,9 +48,11 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    userType: state.auth.userType
   }
 }
+
 
 export default withRouter(connect(mapStateToProps)(App))
 /*

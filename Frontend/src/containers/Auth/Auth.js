@@ -10,165 +10,8 @@ import * as actions from '../../store/actions/index'
 
 class Auth extends Component {
     state = {
-        controlsWorkshopLogin: {
-            email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Podaj NIP'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
-            password: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'Podaj hasło'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            }
-        },
-        controlsRegisterWorkshop: {
-            NIP: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Podaj NIP'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isNumeric: true
-                },
-                valid: false,
-                touched: false
-            },
-            WorkshopName: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj nazwę warsztatu'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            WorkshopCategory: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        {value: 'stacjaKontroliPojazdow', displayValue: 'Stacja kontroli pojazdów'},
-                        {value: 'detailing', displayValue: 'Detailing'},
-                        {value: 'mechanikaPojazdow', displayValue: 'Mechanika pojazdów'},
-                    ]
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            City: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj miasto'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            Street: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj ulicę'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            HomeNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj numer budynku'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            FlatNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj numer mieszkania'
-                },
-                value: ''
-            },
-            ZipCode: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj kod pocztowy'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            password: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'Podaj hasło'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            },
-            Description: {
-                elementType: 'textarea',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj opis warsztatu'
-                },
-                value: ''
-            }
-        },
-        controlsLoginCustomer: {
-            email: {
+        controlsLogin: {
+            Email: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
@@ -182,7 +25,7 @@ class Auth extends Component {
                 valid: false,
                 touched: false
             },
-            password: {
+            Password: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
@@ -197,8 +40,8 @@ class Auth extends Component {
                 touched: false
             }
         },
-        controlsRegisterCustomer: {
-            email: {
+        controlsRegisterMechanic: {
+            Email: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
@@ -300,7 +143,168 @@ class Auth extends Component {
                 valid: false,
                 touched: false
             },
-            password: {
+            Password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Podaj hasło'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            TelephoneNumber: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj numer telefonu'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            CreditCardNumber: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'number',
+                    placeholder: 'Podaj numer karty kredytowej'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            Role: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        { value: 'Owner', displayValue: 'Właściciel' },
+                        { value: 'Employee', displayValue: 'Pracownik' }
+                    ]
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            }
+        },
+        controlsRegisterCustomer: {
+            Email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Podaj adres email'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
+            FirstName: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj imię'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
+            Surname: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj nazwisko'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
+            City: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj miasto'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            },
+            Street: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj ulicę'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            },
+            HomeNumber: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj numer budynku'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            },
+            FlatNumber: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj numer mieszkania'
+                },
+                value: ''
+            },
+            ZipCode: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Podaj kod pocztowy'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            },
+            Password: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
@@ -353,12 +357,6 @@ class Auth extends Component {
         })
     }
 
-    switchLoginRegisterButtonHandler = () => {
-        this.setState(prevState => {
-            return {isSignup: !prevState.isSignup}
-        })
-    }
-
     switchCustomerWorkshopHandler = () => {
         this.setState(prevState => {
             return {customer: !prevState.customer}
@@ -396,34 +394,94 @@ class Auth extends Component {
         return isValid;
     }
 
-    inputChangedHandler = (event, controlName) => {
+    inputChangedHandlerLogin = (event, controlName) => {
         const updatedControls = {
-            ...this.state.controlsLoginCustomer,
+            ...this.state.controlsLogin,
             [controlName]: {
-                ...this.state.controlsLoginCustomer[controlName],
+                ...this.state.controlsLogin[controlName],
                 value: event.target.value,
-                valid: this.checkValidity(event.target.value, this.state.controlsLoginCustomer[controlName].validation),
+                valid: this.checkValidity(event.target.value, this.state.controlsLogin[controlName].validation),
                 touched: true
             }
         };
-        this.setState({controlsLoginCustomer: updatedControls});
+        this.setState({controlsLogin: updatedControls});
+    }
+
+    inputChangedHandlerRegisterCustomer = (event, controlName) => {
+        const updatedControls = {
+            ...this.state.controlsRegisterCustomer,
+            [controlName]: {
+                ...this.state.controlsRegisterCustomer[controlName],
+                value: event.target.value,
+                valid: this.checkValidity(event.target.value, this.state.controlsRegisterCustomer[controlName].validation),
+                touched: true
+            }
+        };
+        this.setState({controlsRegisterCustomer: updatedControls});
+    }
+
+    inputChangedHandlerRegisterMechanic = (event, controlName) => {
+        const updatedControls = {
+            ...this.state.controlsRegisterMechanic,
+            [controlName]: {
+                ...this.state.controlsRegisterMechanic[controlName],
+                value: event.target.value,
+                valid: this.checkValidity(event.target.value, this.state.controlsRegisterMechanic[controlName].validation),
+                touched: true
+            }
+        };
+        this.setState({controlsRegisterMechanic: updatedControls});
     }
 
     submitHandler = (event) => {
         event.preventDefault()
-        this.props.onAuth(this.state.controlsLoginCustomer.email.value, this.state.controlsLoginCustomer.password.value, this.state.isSignup)
+        if(this.state.isSignup) {
+            this.props.onAuthLogin(this.state.controlsLogin.Email.value, this.state.controlsLogin.Password.value)
+        } else {
+            if(this.state.customer){
+                this.props.onAuthRegister(
+                    this.state.controlsRegisterCustomer.Email.value,
+                    this.state.controlsRegisterCustomer.FirstName.value,
+                    this.state.controlsRegisterCustomer.Surname.value,
+                    this.state.controlsRegisterCustomer.City.value,
+                    this.state.controlsRegisterCustomer.Street.value,
+                    this.state.controlsRegisterCustomer.HomeNumber.value,
+                    this.state.controlsRegisterCustomer.FlatNumber.value, 
+                    this.state.controlsRegisterCustomer.ZipCode.value,
+                    this.state.controlsRegisterCustomer.Password.value,
+                    this.state.controlsRegisterCustomer.TelephoneNumber.value,
+                    this.state.controlsRegisterCustomer.CreditCardNumber.value,
+                    null
+                )
+            } else {
+                this.props.onAuthRegister(
+                    this.state.controlsRegisterMechanic.Email.value,
+                    this.state.controlsRegisterMechanic.FirstName.value,
+                    this.state.controlsRegisterMechanic.Surname.value,
+                    this.state.controlsRegisterMechanic.City.value,
+                    this.state.controlsRegisterMechanic.Street.value,
+                    this.state.controlsRegisterMechanic.HomeNumber.value,
+                    this.state.controlsRegisterMechanic.FlatNumber.value, 
+                    this.state.controlsRegisterMechanic.ZipCode.value,
+                    this.state.controlsRegisterMechanic.Password.value,
+                    this.state.controlsRegisterMechanic.TelephoneNumber.value,
+                    this.state.controlsRegisterMechanic.CreditCardNumber.value,
+                    this.state.controlsRegisterMechanic.Role.value
+                )
+            }
+        }
     }
 
     render() {
-        const formElementsArrayLoginWorkshop = []
-        for(let key in this.state.controlsWorkshopLogin) {
-            formElementsArrayLoginWorkshop.push({
+        const formElementsArrayLogin = []
+        for(let key in this.state.controlsLogin) {
+            formElementsArrayLogin.push({
                 id: key,
-                config: this.state.controlsWorkshopLogin[key]
+                config: this.state.controlsLogin[key]
             })
         }
 
-        const formLoginWorkshop = formElementsArrayLoginWorkshop.map(formElement => (
+        const formLogin = formElementsArrayLogin.map(formElement => (
             <Input 
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -432,19 +490,19 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandler( event, formElement.id )}
+                changed={(event) => this.inputChangedHandlerLogin( event, formElement.id )}
             />
         ))
 
-        const formElementsArrayRegisterWorkshop = []
-        for(let key in this.state.controlsRegisterWorkshop) {
-            formElementsArrayRegisterWorkshop.push({
+        const formElementsArrayRegisterMechanic = []
+        for(let key in this.state.controlsRegisterMechanic) {
+            formElementsArrayRegisterMechanic.push({
                 id: key,
-                config: this.state.controlsRegisterWorkshop[key]
+                config: this.state.controlsRegisterMechanic[key]
             })
         }
 
-        const formRegisterWorkshop = formElementsArrayRegisterWorkshop.map(formElement => (
+        const formRegisterMechanic = formElementsArrayRegisterMechanic.map(formElement => (
             <Input 
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -453,28 +511,7 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandler( event, formElement.id )}
-            />
-        ))
-
-        const formElementsArrayLoginCustomer = []
-        for(let key in this.state.controlsLoginCustomer) {
-            formElementsArrayLoginCustomer.push({
-                id: key,
-                config: this.state.controlsLoginCustomer[key]
-            })
-        }
-
-        const formLoginCustomer = formElementsArrayLoginCustomer.map(formElement => (
-            <Input 
-                key={formElement.id}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandler( event, formElement.id )}
+                changed={(event) => this.inputChangedHandlerRegisterMechanic( event, formElement.id )}
             />
         ))
 
@@ -495,7 +532,7 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandler( event, formElement.id )}
+                changed={(event) => this.inputChangedHandlerRegisterCustomer( event, formElement.id )}
             />
         ))
 
@@ -503,9 +540,11 @@ class Auth extends Component {
             <div className={classes.Auth}>
                 <Button
                     clicked={this.switchCustomerWorkshopHandler}
-                    >{this.state.customer ? 'Jestem klientem' : 'Jestem mechanikiem'}</Button>
-                <form onSubmit={this.submitHandler}>                   
-                        {formLoginCustomer}
+                    >{this.state.customer ? 'Jestem mechanikiem' : 'Jestem klientem'}</Button>
+                <form onSubmit={this.submitHandler}> 
+
+                        {this.state.isSignup ? formLogin: 
+                         this.state.customer ? formRegisterCustomer: formRegisterMechanic}
                         <Button>ZALOGUJ</Button>
                 </form>
                 <Button
@@ -518,7 +557,10 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
+        onAuthLogin: (email, password) => dispatch(actions.authLogin(email, password)),
+        onAuthRegister: (email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, creditCardNumber, role) => {
+            dispatch(actions.authRegister(email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, creditCardNumber, role))
+        }
     }
 }
 

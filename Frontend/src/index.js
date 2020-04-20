@@ -9,7 +9,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import authReducer from './store/reducers/auth'
-
 const rootReducer = combineReducers({
     auth: authReducer
 })

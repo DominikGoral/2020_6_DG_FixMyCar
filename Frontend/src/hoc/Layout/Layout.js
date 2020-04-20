@@ -5,11 +5,13 @@ import Aux from '../Auxiliary/Auxiliary'
 import classes from './Layout.css'
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
 
+
 class Layout extends Component {
     render() {
         return (
             <Aux>
-                <Toolbar isAuth={this.props.isAuthenticated}/>
+                <Toolbar isAuth={this.props.isAuthenticated} userType={this.props.userType}/>
+                
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

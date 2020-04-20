@@ -1,5 +1,9 @@
 const Sequelize = require('sequelize')
-const ServiceModel = require('./models/service')
+//const ServiceModel = require('./models/service')
+const CustomerModel = require('./models/customer')
+const AddressModel = require('./models/address')
+const MechanicModel = require('./models/mechanic')
+const WorkshopModel = require('./models/workshop')
 
 const sequelize = new Sequelize('fixmycar', 'root', 'root', {
     host: '127.0.0.1',
@@ -8,7 +12,21 @@ const sequelize = new Sequelize('fixmycar', 'root', 'root', {
     
 })
 
-const Service = ServiceModel(sequelize, Sequelize)
+//const Service = ServiceModel(sequelize, Sequelize)
+const Customer = CustomerModel(sequelize, Sequelize)
+const Address = AddressModel(sequelize, Sequelize)
+const Mechanic = MechanicModel(sequelize, Sequelize)
+const Workshop = WorkshopModel(sequelize, Sequelize)
+
+Address.hasMany(Customer, {
+  foreignKey: 'Id_address'
+})
+Address.hasMany(Mechanic, {
+  foreignKey: 'Id_address'
+})
+Address.hasMany(Workshop, {
+  foreignKey: 'Id_address'
+})
 
 sequelize.sync({ force: false })
     .then(() => {
@@ -25,5 +43,9 @@ sequelize.sync({ force: false })
     });
 
 module.exports = {
-    Service
+    //Service,
+    Customer,
+    Address,
+    Mechanic,
+    Workshop
 }
