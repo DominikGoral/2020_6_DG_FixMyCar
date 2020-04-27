@@ -1,4 +1,4 @@
-const { Workshop } = require('../sequelize')
+const { Workshop, Address } = require('../sequelize')
 
 exports.allWorkshops = (req, res) => {
     Workshop.findAll()
@@ -14,6 +14,22 @@ exports.oneWorkshop = (req, res) => {
         }
     })
     .then(workshop => {
-        res.status(200).send(workshop.dataValues)
+        if(workshop) {
+            Address.findOne({
+                where: {
+                    AddressID: workshop.Id_address
+                }
+            })
+            .then(address => {
+                const workshopData = {
+                    workshopInfo: workshop,
+                    addressInfo: address 
+                }
+                res.status(200).send(workshopData)
+            })
+        }
+    })
+    .catch(error => {
+        res.send(error)
     })
 }

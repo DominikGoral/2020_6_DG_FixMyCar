@@ -10,11 +10,10 @@ module.exports = function(app) {
         next()
     })
 
-    app.get('/api/test/workshop/all', controller.allWorkshops)
+    app.get('/workshop/all', controller.allWorkshops)
 
     app.get(
-        '/api/test/workshop/:id',
-        [authJwt.verifyToken],
+        '/workshop/:id',
         controller.oneWorkshop
     )
 }

@@ -4,7 +4,7 @@ import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = (props) => {
-    console.log(props.userType)
+    console.log('TYP UZYTKOWNIKA: ' + props.userType)
     return (
         <ul className={classes.NavigationItems}>
         {props.isAuthenticated
@@ -21,6 +21,9 @@ const navigationItems = (props) => {
             ? <NavigationItem link="/visit/all">Wizyty</NavigationItem>
             : null
         }
+        <NavigationItem link="/workshop/all">Warsztaty</NavigationItem>
+        <NavigationItem link="/me">Mój profil</NavigationItem>
+        <NavigationItem link="/map">Mapa</NavigationItem>
     </ul>
     )
 }

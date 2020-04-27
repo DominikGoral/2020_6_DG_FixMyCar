@@ -3,3 +3,7 @@ export {
     authRegister,
     logout
 } from './auth'
+
+export {
+    dataUpdate
+} from './user'

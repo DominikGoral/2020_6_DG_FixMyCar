@@ -11,7 +11,6 @@ class Layout extends Component {
         return (
             <Aux>
                 <Toolbar isAuth={this.props.isAuthenticated} userType={this.props.userType}/>
-                
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

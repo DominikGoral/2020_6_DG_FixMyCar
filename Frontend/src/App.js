@@ -7,12 +7,20 @@ import Workshop from './containers/Workshop/Workshop'
 import Auth from './containers/Auth/Auth'
 import Logout from './containers/Auth/Logout/Logout'
 import './App.css';
+import WorkshopItems from './containers/Workshop/WorkshopItems/WorkshopItems';
+import WorkshopDetails from './containers/Workshop/WorkshopDetails/WorkshopDetails'
+import Profile from './containers/Profile/Profile'
+import WorkshopMap from './containers/Map/WorkshopMap'
 
 class App extends Component {
   render() {
     let routes = (
       <Switch>
         <Route path="/auth" component={Auth} />
+        <Route path="/workshop/all" component={WorkshopItems} />
+        <Route path="/workshop/:id" component={WorkshopDetails}/>
+        <Route path="/me" component={Profile}/>
+        <Route path="/map" component={WorkshopMap}/>
         <Route path="/"/>
         <Redirect to="/auth" />
       </Switch>
@@ -29,9 +37,10 @@ class App extends Component {
     } else if (this.props.isAuthenticated && this.props.userType === 'customer') {
       routes = (
         <Switch>
-          
           <Route path="/logout" component={Logout}/>
-          <Redirect to="/" />
+          <Route path="/workshop/all" component={WorkshopItems} />
+          <Route path="/me" component={Profile} />
+          <Redirect to="/workshop/all" />
         </Switch>
       )
     }

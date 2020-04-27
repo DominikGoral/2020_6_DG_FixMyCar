@@ -19,4 +19,11 @@ module.exports = function(app) {
         [authJwt.verifyToken],
         controller.userAccess
     )
+
+    app.get(
+        '/profile/:id',
+        controller.showMyProfile
+    )
+
+    app.put('/me', controller.updateData)
 }
