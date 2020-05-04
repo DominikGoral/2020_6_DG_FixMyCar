@@ -12,3 +12,11 @@ Możemy dodać samochód, formularz wyświetla się po kliknieciu w "Dodaj pojaz
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.5.png)
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.6.png)
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.7.png)
+Controllers and routes
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.8.png)
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.9.png)
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.10.png)
+React return in Vehicles files
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.11.png)
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.12.png)
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.13.png)
