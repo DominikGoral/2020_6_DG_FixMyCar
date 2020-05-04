@@ -32,6 +32,8 @@
 }
 */
 .Input {
+    width: 80%;
+    margin-left: 10%;
     position:relative;
 	margin-bottom:25px;
 }

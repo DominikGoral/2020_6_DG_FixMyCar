@@ -10,7 +10,7 @@ class Layout extends Component {
     render() {
         return (
             <Aux>
-                <Toolbar isAuth={this.props.isAuthenticated} userType={this.props.userType}/>
+                <Toolbar isAuth={this.props.isAuthenticated} mechanic={this.props.mechanic} customer={this.props.customer}/>
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>
@@ -21,7 +21,9 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        customer: state.auth.customer,
+        mechanic: state.auth.mechanic
     }
 }
 

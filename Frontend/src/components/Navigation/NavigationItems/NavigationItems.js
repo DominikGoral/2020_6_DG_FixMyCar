@@ -2,29 +2,32 @@ import React from 'react';
 
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
+import Aux from '../../../hoc/Auxiliary/Auxiliary'
 
 const navigationItems = (props) => {
-    console.log('TYP UZYTKOWNIKA: ' + props.userType)
     return (
         <ul className={classes.NavigationItems}>
-        {props.isAuthenticated
-            ? <NavigationItem link="/workshop">Warsztat</NavigationItem>
-            : null
-        }
-        {props.isAuthenticated 
-            ? <NavigationItem link="/logout">Wyloguj</NavigationItem>
-            : <NavigationItem link="/auth">Logowanie</NavigationItem>
-        }
-        {props.userType === 'customer'
-            ? <NavigationItem link="/workshop/all">Warsztaty</NavigationItem>
-        : props.userType === 'mechanic'
-            ? <NavigationItem link="/visit/all">Wizyty</NavigationItem>
-            : null
-        }
-        <NavigationItem link="/workshop/all">Warsztaty</NavigationItem>
-        <NavigationItem link="/me">Mój profil</NavigationItem>
-        <NavigationItem link="/map">Mapa</NavigationItem>
-    </ul>
+            {(props.isAuthenticated && props.mechanic)
+                ? <Aux>
+                    <NavigationItem link="/workshop">Warsztat</NavigationItem>
+                    <NavigationItem link="/logout">Wyloguj</NavigationItem>
+                </Aux>
+                : null
+            }
+            {(props.isAuthenticated && props.customer)
+                ? <Aux>
+                    <NavigationItem link="/workshop/all">Warsztaty</NavigationItem>
+                    <NavigationItem link="/me">Mój profil</NavigationItem>
+                    <NavigationItem link="/vehicle/all">Moje pojazdy</NavigationItem>
+                    <NavigationItem link="/logout">Wyloguj</NavigationItem>
+                </Aux>
+                : null
+            }
+            {!props.isAuthenticated
+                ? <NavigationItem link="/auth">Logowanie</NavigationItem>
+                : null
+            }
+        </ul>
     )
 }
 

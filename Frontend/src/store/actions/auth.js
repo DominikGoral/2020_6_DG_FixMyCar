@@ -7,12 +7,13 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, userId, userType) => {
+export const authSuccess = (token, userId, mechanic, customer) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
         userId: userId,
-        userType: userType
+        mechanic: mechanic,
+        customer: customer
     }
 }
 
@@ -51,8 +52,7 @@ export const authLogin = (email, password) => {
         // }
         axios.post(url, authData)
             .then(response => {
-                console.log(response.data.userType)
-                dispatch(authSuccess(response.data.accessToken, response.data.id, response.data.userType))
+                dispatch(authSuccess(response.data.accessToken, response.data.id, response.data.mechanic, response.data.customer))
                 dispatch(checkAuthTimeout(response.data.expiresIn))
             })
             .catch(err => {

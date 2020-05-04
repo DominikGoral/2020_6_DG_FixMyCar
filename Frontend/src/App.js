@@ -11,6 +11,8 @@ import WorkshopItems from './containers/Workshop/WorkshopItems/WorkshopItems';
 import WorkshopDetails from './containers/Workshop/WorkshopDetails/WorkshopDetails'
 import Profile from './containers/Profile/Profile'
 import WorkshopMap from './containers/Map/WorkshopMap'
+import VehicleItems from './containers/Vehicles/VehicleItems/VehicleItems'
+import VehicleDetails from './containers/Vehicles/VehicleDetails/VehicleDetails'
 
 class App extends Component {
   render() {
@@ -19,14 +21,12 @@ class App extends Component {
         <Route path="/auth" component={Auth} />
         <Route path="/workshop/all" component={WorkshopItems} />
         <Route path="/workshop/:id" component={WorkshopDetails}/>
-        <Route path="/me" component={Profile}/>
-        <Route path="/map" component={WorkshopMap}/>
         <Route path="/"/>
-        <Redirect to="/auth" />
+        <Redirect to="/workshop/all" />
       </Switch>
     )
     
-    if (this.props.isAuthenticated && this.props.userType === 'mechanic') {
+    if (this.props.isAuthenticated && this.props.mechanic) {
       routes = (
         <Switch>
           <Route path="/workshop" component={Workshop}/>
@@ -34,11 +34,14 @@ class App extends Component {
           <Redirect to="/" />
         </Switch>
       )
-    } else if (this.props.isAuthenticated && this.props.userType === 'customer') {
+    } else if (this.props.isAuthenticated && this.props.customer) {
       routes = (
         <Switch>
           <Route path="/logout" component={Logout}/>
           <Route path="/workshop/all" component={WorkshopItems} />
+          <Route path="/workshop/:id" component={WorkshopDetails}/>
+          <Route path="/vehicle/all" component={VehicleItems} />
+          <Route path="/vehicle/:id" component={VehicleDetails}/>
           <Route path="/me" component={Profile} />
           <Redirect to="/workshop/all" />
         </Switch>
@@ -58,7 +61,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
-    userType: state.auth.userType
+    mechanic: state.auth.mechanic,
+    customer: state.auth.customer
   }
 }
 

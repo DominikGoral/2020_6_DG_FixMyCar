@@ -1,5 +1,4 @@
-/*
-input {
+.SearchInput {
     width: 70%;
     margin-left: 10%;
     height: 56px;
@@ -7,4 +6,3 @@ input {
     border-radius: 40px 40px;
     margin-bottom: 40px;
 }
-*/

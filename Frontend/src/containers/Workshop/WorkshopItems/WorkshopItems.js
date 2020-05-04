@@ -28,19 +28,6 @@ class WorkshopItems extends Component {
         })
     }
 
-    handleInputChange = (e) => {
-        const newQuery = e.target.value
-        this.setState(prevState => {
-            const filteredData = prevState.workshops.filter(element => {
-                return element.WorkshopName.toLowerCase().includes(newQuery.toLowerCase())
-            })
-            return {
-                query: newQuery,
-                filteredWorkshops: filteredData
-            }
-        })
-    }
-
     render() {
         console.log(this.state)
         return (

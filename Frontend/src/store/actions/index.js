@@ -7,3 +7,7 @@ export {
 export {
     dataUpdate
 } from './user'
+
+export {
+    addVehicle
+} from './vehicle'

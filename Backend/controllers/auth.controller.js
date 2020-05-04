@@ -62,7 +62,6 @@ exports.signUp = (req, res) => {
 
 exports.signIn = (req, res) => {
     var tokenExpiresIn = 32400
-    var userType = ''
     Customer.findOne({
         where: {
             Email: req.body.email
@@ -70,7 +69,6 @@ exports.signIn = (req, res) => {
     })
     .then(customer => {
         if(customer) {
-            userType = 'customer'
             var passwordIsValid = bcrypt.compareSync(
                 req.body.password,
                 customer.Password
@@ -90,7 +88,8 @@ exports.signIn = (req, res) => {
                 id: customer.Email,
                 accessToken: token,
                 expiresIn: tokenExpiresIn,
-                userType: userType
+                mechanic: false,
+                customer: true
             })
         } else {
             Mechanic.findOne({
@@ -99,7 +98,6 @@ exports.signIn = (req, res) => {
                 }
             }).then(mechanic => {
                 if(mechanic) {
-                    userType = 'mechanic'
                     var passwordIsValid = bcrypt.compareSync(
                         req.body.password,
                         mechanic.Password
@@ -119,7 +117,8 @@ exports.signIn = (req, res) => {
                         id: mechanic.Email,
                         accessToken: token,
                         expiresIn: tokenExpiresIn,
-                        userType: userType
+                        mechanic: true,
+                        customer: false
                     })
                 } else {
                     return res.status(404).send({ message: 'Uzytkownik nie istnieje.' })

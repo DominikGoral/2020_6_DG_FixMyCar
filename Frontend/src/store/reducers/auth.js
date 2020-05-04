@@ -4,7 +4,8 @@ import { updateObject } from '../utility'
 const initialState = {
     token: null,
     userId: null,
-    userType: null,
+    mechanic: null,
+    customer: null,
     error: null,
     loading: false
 }
@@ -17,7 +18,8 @@ const authSuccess = (state, action) => {
     return updateObject( state, {
         token: action.idToken,
         userId: action.userId,
-        userType: action.userType,
+        mechanic: action.mechanic,
+        customer: action.customer,
         error: null,
         loading: false
     })
@@ -25,13 +27,13 @@ const authSuccess = (state, action) => {
 
 const authFail = (state, action) => {
     return updateObject( state, {
-        erro: action.error,
+        error: action.error,
         loading: false
     })
 }
 
 const authLogout = (state, action) => {
-    return updateObject(state, { token: null, userId: null, userType: null })
+    return updateObject(state, { token: null, userId: null, customer: null, mechanic: null })
 } 
 
 const reducer = (state = initialState, action) => {
