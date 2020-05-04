@@ -276,7 +276,8 @@ class VehicleItems extends Component {
                         <VehicleItem    
                             name={vehicle.VehicleName}
                             category={vehicle.VehicleModel}                                                            
-                        />
+                        >
+                        </VehicleItem>
                     </Link>))}
                 </div>
             </Aux>
