@@ -7,4 +7,4 @@ określić do kiedy można dokonać zmiany terminu wizyty. Jeśli czas pozwoli t
 
 Została dodana sekcja moje pojazdy
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.3.png)
-![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/images/9.4.png)
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.4.png)
