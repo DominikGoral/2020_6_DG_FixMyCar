@@ -6,6 +6,7 @@ const MechanicModel = require('./models/mechanic')
 const WorkshopModel = require('./models/workshop')
 const VehicleModel = require('./models/vehicle')
 const VisitModel = require('./models/visit')
+const MechanicsInWorkshopModel = require('./models/mechanicsInWorkshop')
 
 const sequelize = new Sequelize('fixmycar', 'root', 'root', {
     host: '127.0.0.1',
@@ -21,6 +22,7 @@ const Mechanic = MechanicModel(sequelize, Sequelize)
 const Workshop = WorkshopModel(sequelize, Sequelize)
 const Vehicle = VehicleModel(sequelize, Sequelize)
 const Visit = VisitModel(sequelize, Sequelize)
+const MechanicsInWorkshops = MechanicsInWorkshopModel(sequelize, Sequelize)
 
 Address.hasMany(Customer, {
   foreignKey: 'Id_address'
@@ -53,5 +55,6 @@ module.exports = {
     Mechanic,
     Workshop,
     Vehicle,
-    Visit
+    Visit,
+    MechanicsInWorkshops
 }

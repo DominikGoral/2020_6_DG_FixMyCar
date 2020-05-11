@@ -79,10 +79,12 @@ INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescript
 	VALUES ('5993045632', 'michal.kowalski83@gmail.com', 'JM3ER29L070133282', STR_TO_DATE('20190923 0800', '%Y%m%d %H%i'), 'Został dokonany przegląd techniczny i wymiana oleju', '1.75 h', 266.83, 'przelew', 'aro.bocian111@gmail.com'); 
 
 -------- MECHANICS IN WORKSHOPS --------
-INSERT INTO MechanicsInWorkshop(Id_mechanic, Id_workshop)
-	VALUES ('stanislaw.borowka17@gmail.com', '5993045632');
-INSERT INTO MechanicsInWorkshop(Id_mechanic, Id_workshop)
-	VALUES ('aro.bocian111@gmail.com', '5993045632');
+INSERT INTO MechanicsInWorkshop(Id_mechanic, Id_workshop, Role)
+	VALUES ('stanislaw.borowka17@gmail.com', '5993045632', 'Owner');
+INSERT INTO MechanicsInWorkshop(Id_mechanic, Id_workshop, Role)
+	VALUES ('aro.bocian111@gmail.com', '5993045632', 'Employee');
+INSERT INTO MechanicsInWorkshop(Id_mechanic, Id_workshop, Role)
+	VALUES ('marekgoral123@gmail.com', '5993045632', 'Employee');
     
 -------- SERVICES IN VISIT --------
 INSERT INTO ServicesInVisit(Id_visit, Id_service) VALUES (1,4);

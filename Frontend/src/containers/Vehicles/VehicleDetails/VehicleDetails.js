@@ -4,6 +4,7 @@ import classes from './VehicleDetails.css'
 
 import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import Visit from '../../../components/Visit/VisitShortInfo/VisitShortInfo'
+import Button from '../../../components/UI/Button/Button'
 
 class Vehicle extends Component {
     state = {
@@ -39,6 +40,11 @@ class Vehicle extends Component {
                     LastServices: vehicleInfo.visits
                 })
             })
+    }
+
+    deleteVehicle = () => {
+        let url = 'http://localhost:8001/vehicle/' + this.state.VIN_Number
+        axios.delete(url)
     }
 
     render() {
@@ -82,6 +88,7 @@ class Vehicle extends Component {
                     <p style={{fontSize:'200%'}}><b>Dokonane naprawy</b></p>
                     {visits}
                 </div>
+                <Button clicked={this.deleteVehicle}>Usuń pojazd</Button>
             </Aux>
         )
     }

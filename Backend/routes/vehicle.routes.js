@@ -13,6 +13,7 @@ module.exports = function(app) {
     app.get('/vehicle/all', controller.allVehicles)
 
     app.get('/vehicle/:id', controller.oneVehicle)
+    app.delete('/vehicle/:id', controller.deleteVehicle)
 
     app.post('/vehicle/new-vehicle', controller.addVehicle)
 }

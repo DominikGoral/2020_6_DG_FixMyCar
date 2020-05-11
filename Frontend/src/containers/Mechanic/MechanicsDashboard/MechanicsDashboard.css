@@ -1,0 +1,29 @@
+.OptionItem {
+    width: 80%;
+    padding: 5px 5px;
+}
+
+.OptionItem:hover,
+.OptionItem:active {
+    background-color: #407ca1;
+}
+
+.Options {
+    float: left;
+    margin-top: 10vh;
+    width: 10%;
+    margin-left: 5%;
+    background-color: #7eb5d8;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+
+.Content {
+    margin-top: 10vh;
+    float: left;
+    width: 70%;
+    margin-left: 5%;
+    padding: 10px 0;
+    background-color: #7eb5d8;
+    border-radius: 5px;
+}

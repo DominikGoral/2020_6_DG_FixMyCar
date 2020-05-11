@@ -11,3 +11,7 @@ export {
 export {
     addVehicle
 } from './vehicle'
+
+export {
+    addWorkshop
+} from './workshop'

@@ -13,6 +13,9 @@ import Profile from './containers/Profile/Profile'
 import WorkshopMap from './containers/Map/WorkshopMap'
 import VehicleItems from './containers/Vehicles/VehicleItems/VehicleItems'
 import VehicleDetails from './containers/Vehicles/VehicleDetails/VehicleDetails'
+import MechanicsWorkshops from './containers/Mechanic/MechanicWorkshops/MechanicWorkshops';
+import MechanicsDashboard from './containers/Mechanic/MechanicsDashboard/MechanicsDashboard';
+import AddWorkshop from './containers/Mechanic/MechanicWorkshops/AddWorkshop/AddWorkshop';
 
 class App extends Component {
   render() {
@@ -20,9 +23,8 @@ class App extends Component {
       <Switch>
         <Route path="/auth" component={Auth} />
         <Route path="/workshop/all" component={WorkshopItems} />
-        <Route path="/workshop/:id" component={WorkshopDetails}/>
-        <Route path="/"/>
-        <Redirect to="/workshop/all" />
+        <Route path="/" component={WorkshopItems}/>
+        <Redirect to="/auth"/>
       </Switch>
     )
     
@@ -31,6 +33,8 @@ class App extends Component {
         <Switch>
           <Route path="/workshop" component={Workshop}/>
           <Route path="/logout" component={Logout}/>
+          <Route path="/mechanic/" component={MechanicsDashboard}/>
+          <Route path="/mechanic/workshop/add-new" component={AddWorkshop}/>
           <Redirect to="/" />
         </Switch>
       )

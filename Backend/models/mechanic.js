@@ -28,10 +28,6 @@ module.exports = (sequelize, type) => {
         CreditCardNumber: {
             type: type.STRING(16),
             allowNull: true
-        },
-        Role: {
-            type: type.ENUM('uczen', 'ekspert', 'administrator'),
-            allowNull: false
         }
     },
     {

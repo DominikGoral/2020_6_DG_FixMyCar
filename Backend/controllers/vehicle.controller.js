@@ -57,3 +57,14 @@ exports.addVehicle = (req, res) => {
         res.send(error)
     })
 }
+
+exports.deleteVehicle = (req, res) => {
+    Vehicle.findOne({
+        where: {
+            VIN_Number: req.params.id
+        }
+    })
+    .then(response => {
+        response.destroy()
+    })
+}

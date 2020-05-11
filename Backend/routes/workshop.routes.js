@@ -16,4 +16,7 @@ module.exports = function(app) {
         '/workshop/:id',
         controller.oneWorkshop
     )
+
+    app.get('/mechanic/workshop/all', controller.allMechanicsWorkshop)
+    app.post('/mechanic/workshop/add-new', controller.addWorkshop)
 }

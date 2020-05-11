@@ -11,6 +11,7 @@ const navigationItems = (props) => {
                 ? <Aux>
                     <NavigationItem link="/workshop">Warsztat</NavigationItem>
                     <NavigationItem link="/logout">Wyloguj</NavigationItem>
+                    <NavigationItem link="/mechanic/">Warsztaty</NavigationItem>
                 </Aux>
                 : null
             }
