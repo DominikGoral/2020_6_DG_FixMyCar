@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Spring } from 'react-spring/renderprops'
+//import { Spring } from 'react-spring/renderprops'
 import { connect } from 'react-redux'
 import { AiOutlineSave } from 'react-icons/ai'
 
@@ -220,6 +220,13 @@ class AddWorkshop extends Component {
             />
         ))
         return(
+            <form onSubmit={this.submitHandler}>
+                {form}
+                <div style={{marginLeft: '80%'}}>
+                    <Button>Zapisz <AiOutlineSave /></Button>
+                </div>
+            </form>
+            /*
             <Spring
                 from={{opacity: 0, marginTop: -500}}
                 to={{ opacity: 1, marginTop: 0}}
@@ -235,6 +242,7 @@ class AddWorkshop extends Component {
                     </div>
                 )}
             </Spring> 
+            */
         )
     }
 }

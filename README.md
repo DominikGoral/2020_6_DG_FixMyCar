@@ -20,3 +20,15 @@ React return in Vehicles files
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.11.png)
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.12.png)
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/9.13.png)
+
+*********************************** Etap X ******************************************
+
+Po zalogowaniu pracownik może przejść do sekcji Warsztaty
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/10_po_zalogowaniu.png)
+Mamy ukazany dashboard, w którym może poruszać się mechanik.
+Podczas przełączania między opcjami, które mamy po lewej stronie, zostały dodane efekty przejść.
+Wszystko odbywa się z wykorzystaniem react-spring.
+Po kliknięciu w znak + obok napisu ,, Dodaj warsztat" jest wysuwany formularz w którym mechanik może dodać warsztat.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/10_formularz.png)
+Po dodaniu warsztatu
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/10_po_dodaniu.png)
