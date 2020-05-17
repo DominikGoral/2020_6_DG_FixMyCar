@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import classes from './MechanicsDashboard.css'
 import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import MechanicWorkshops from '../MechanicWorkshops/MechanicWorkshops'
+import MechanicVisits from '../MechanicsVisits/MechanicVisits'
 import AddWorkshop from '../MechanicWorkshops/AddWorkshop/AddWorkshop'
 
 class MechanicsDashboard extends Component {
@@ -17,7 +18,7 @@ class MechanicsDashboard extends Component {
             case 0:
                 return (<MechanicWorkshops userId={this.props.userId}></MechanicWorkshops>)
             case 1:
-                return (<div className={classes.div2}></div>)
+                return (<MechanicVisits userId={this.props.userId}/>)
             case 2:
                 return (<div className={classes.div2}></div>)
         }

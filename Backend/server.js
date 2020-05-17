@@ -12,8 +12,15 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-//app.use(express.json())
+//app.use(express.static(path.join(__dirname, './build')))
 
+
+//app.use(express.json())
+/*
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'frontend/build/index.html'))
+})
+*/
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to application!'})
 })
@@ -23,6 +30,7 @@ require('./routes/auth.routes')(app)
 require('./routes/user.routes')(app)
 require('./routes/workshop.routes')(app)
 require('./routes/vehicle.routes')(app)
+require('./routes/visit.routes')(app)
 
 const PORT = process.env.PORT || 8001
 app.listen(PORT, () => {

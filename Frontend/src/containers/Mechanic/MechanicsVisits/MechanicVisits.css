@@ -1,0 +1,26 @@
+.Today {
+    width: 70%;
+    margin-left: 12%;
+    background-color: #df6161e3;
+    border-radius: 5px;
+    padding: 3% 3%;
+    color: #f3f3f3
+}
+
+.DatePicker {
+    width: 100%;
+    font-size: 250%;
+    background-color: #df6161e3;
+    border: none;
+}
+
+.AddVisitButton {
+    text-align: center;
+    font-size: 200%;
+    height: 50px;
+    width: 66%;
+    margin-left: 17%;
+    background-color: #f1ebebd5;
+    border-radius: 5px;
+    padding: 0 3%;
+}
