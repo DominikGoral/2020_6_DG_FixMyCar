@@ -26,7 +26,6 @@ Password VARCHAR(250) NOT NULL,
 PhoneNumber VARCHAR(12) NOT NULL,
 CreditCardNumber VARCHAR(16),
 Id_address INT NOT NULL,
-Role ENUM('Owner', 'Employee') NOT NULL,
 FOREIGN KEY (Id_address) REFERENCES Address(AddressID)
 );
 
@@ -95,6 +94,7 @@ VisitDurationTime VARCHAR(60) NOT NULL,
 TotalPrice DECIMAL(8,2) NOT NULL,
 PaymentMethod VARCHAR(20) NOT NULL,
 Id_mechanic VARCHAR(80) NOT NULL,
+Done TINYINT(4) NOT NULL,
 FOREIGN KEY (Id_workshop) REFERENCES Workshop(NIP),
 FOREIGN KEY (Id_customer) REFERENCES Customer(Email),
 FOREIGN KEY (Id_vehicle) REFERENCES Vehicle(VIN_Number),
@@ -112,6 +112,7 @@ FOREIGN KEY (Id_service) REFERENCES Service(ServiceID)
 CREATE TABLE MechanicsInWorkshop (
 Id_mechanic VARCHAR(80) NOT NULL,
 Id_workshop VARCHAR(10) NOT NULL,
+Role ENUM('Owner', 'Employee') NOT NULL,
 FOREIGN KEY (Id_mechanic) REFERENCES Mechanic(Email),
 FOREIGN KEY (Id_workshop) REFERENCES Workshop(NIP)
 );

@@ -3,6 +3,7 @@ import WorkshopItem from '../../../components/Workshop/WorkshopItems/WorkshopIte
 import classes from './WorkshopItems.css'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { BASEPATH } from '../../../config'
 const axios = require('axios')
 
 
@@ -17,7 +18,7 @@ class WorkshopItems extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8001/workshop/all')
+        axios.get(BASEPATH + '/workshop/all')
         .then(response => {
             const workshopsReceived = response.data
             this.setState({ 

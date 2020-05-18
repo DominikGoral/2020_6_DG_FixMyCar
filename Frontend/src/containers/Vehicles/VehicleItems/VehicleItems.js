@@ -7,6 +7,7 @@ import VehicleItem from '../../../components/Vehicle/VehicleItems/VehicleItem/Ve
 import Button from '../../../components/UI/Button/Button'
 import Input from '../../../components/UI/Input/Input'
 import * as actions from '../../../store/actions/index'
+import { BASEPATH } from '../../../config'
 
 const axios = require('axios')
 
@@ -175,7 +176,7 @@ class VehicleItems extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8001/vehicle/all', {
+        axios.get(BASEPATH + '/vehicle/all', {
             params: {
                 userId: this.props.userId
             }

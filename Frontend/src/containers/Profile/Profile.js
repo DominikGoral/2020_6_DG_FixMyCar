@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { FaUser } from 'react-icons/fa'
 import * as actions from '../../store/actions/index'
+import { BASEPATH } from '../../config'
 
 import classes from './Profile.css'
 
@@ -172,7 +173,7 @@ class Profile extends Component {
     }
     
     componentDidMount() {
-        axios.get('http://localhost:8001/profile/' + this.props.userId)
+        axios.get(BASEPATH + '/profile/' + this.props.userId)
             .then(response => {
                 const profileData = response.data.customerData
                 const addressData = response.data.addressData

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { BASEPATH } from '../../../../config'
 
 import classes from './MechanicVisit.css'
 
@@ -18,7 +19,7 @@ class MechanicVisit extends Component {
 
     getVisitInfo = () => {
         if(!this.state.showInfo) {
-            axios.get('http://localhost:8001/mechanic/visit/' + this.props.visitId)
+            axios.get(BASEPATH + '/mechanic/visit/' + this.props.visitId)
             .then(response => {
                 console.log(response)
                 const visitData = response.data
@@ -38,8 +39,12 @@ class MechanicVisit extends Component {
     render() {
         return (
             <div className={classes.Visit} onClick={async e =>  {await this.getVisitInfo(), await this.setState({ showInfo: !this.state.showInfo })}}>
-                <p style={{ display: 'inline' }}><b>Marka: </b>{this.props.vehicleName} &nbsp;&nbsp;&nbsp; <b>Model: </b>{this.props.vehicleModel}</p>
-                <p><b>Opis:</b> {this.props.description}</p>
+                <div>
+                    <div>
+                        <p style={{ display: 'inline' }}><b>Marka: </b>{this.props.vehicleName} &nbsp;&nbsp;&nbsp; <b>Model: </b>{this.props.vehicleModel}</p>
+                        <p><b>Opis:</b> {this.props.description}</p>
+                    </div>
+                </div>
                 {this.state.showInfo 
                     ? <MechanicVisitInfo 
                         firstName={this.state.FirstName}

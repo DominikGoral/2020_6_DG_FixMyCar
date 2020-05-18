@@ -74,3 +74,17 @@ exports.oneVisit = async (req, res) => {
         servicesInfo: services
     })
 }
+
+exports.deleteVisit = async (req, res) => {
+    const servicesInVisit = await ServicesInVisit.destroy({
+        where: {
+            Id_visit: req.params.id
+        }
+    })
+    const visit = await Visit.destroy({
+        where: {
+            VisitID: req.params.id
+        }
+    })
+    
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
 import classes from './VehicleDetails.css'
+import { BASEPATH } from '../../../config'
 
 import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import Visit from '../../../components/Visit/VisitShortInfo/VisitShortInfo'
@@ -22,7 +23,7 @@ class Vehicle extends Component {
 
     componentDidMount() {
         console.log('PARAMS: ' + this.props.match.params.id)
-        let url = 'http://localhost:8001/vehicle/' + this.props.match.params.id
+        let url = BASEPATH + '/vehicle/' + this.props.match.params.id
         axios.get(url)
             .then(response => {
                 console.log(response.data)

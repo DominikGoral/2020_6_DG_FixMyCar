@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { AiFillPlusCircle } from "react-icons/ai";
+import { AiFillPlusCircle, AiOutlineSave, AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
+import TimePicker from 'react-time-picker'
+import { BASEPATH } from '../../../config'
 
 
 import classes from './MechanicVisits.css'
 
 import MechanicVisit from './MechanicVisit/MechanicVisit'
 import Aux from '../../../hoc/Auxiliary/Auxiliary'
+import Button from '../../../components/UI/Button/Button'
+import Input from '../../../components/UI/Input/Input'
 
 class MechanicVisits extends Component {
     state = {
         visits: [],
         vehicles: [],
-        today: ''
+        today: '',
+        showAddVisitForm: false,
+        newHour: ''
     }
 
     async componentDidMount() {
@@ -29,10 +35,16 @@ class MechanicVisits extends Component {
         return date
     }
 
+    deleteVisit = async (visitID) => {
+        const response = await axios.delete(BASEPATH + '/mechanic/visit/' + visitID)
+        const updatedVisits = await this.downloadVisits()
+        this.setState({ visits: updatedVisits.data.visits, vehicles: updatedVisits.data.vehicles })
+    }
+
 
     downloadVisits = async () => {
         console.log('data: ' + this.state.today)
-        const visitsData = await axios.get('http://localhost:8001/mechanic/visit/all', {
+        const visitsData = await axios.get(BASEPATH + '/mechanic/visit/all', {
             params: {
                 userId: this.props.userId,
                 day: this.state.today,
@@ -41,6 +53,14 @@ class MechanicVisits extends Component {
         })
         console.log(visitsData)
         return visitsData
+    }
+
+    submitHandler = (visitID) => {
+        console.log(this.state.visitElement)
+    }
+
+    inputChangedHourHandler = async (event, visitID) => {
+        this.setState({newHour: event.target.value});
     }
 
     render() {
@@ -54,7 +74,24 @@ class MechanicVisits extends Component {
         }
         const visits = visitsElements.map(visitElement => (
             <div>
-                <p style={{ borderBottom: '2px solid grey', width: '70%', marginLeft: '15%', fontSize: '180%' }}>{visitElement.visit.VisitDate.substring(11, 16)}</p>
+                <div className={classes.VisitTime} style={{  }}>
+                    <p style={{ display: 'inline' }}>
+                        {visitElement.visit.VisitDate.substring(11, 16)}
+                    </p>
+                    <p style={{ display: 'inline', marginLeft: '80%' }}><AiOutlineClose className={classes.Icons} onClick={e => this.deleteVisit(visitElement.visit.VisitID)}/></p> 
+                    {this.state.modifyHour 
+                        ? <div style={{display: 'inline'}}>
+                            <form onSubmit={this.submitHandler}>
+                            <Input 
+                                value={this.state.newHour}
+                                changed={(event) => this.inputChangedHourHandler(event, visitElement.visit.VisitID)}
+                            />
+                                <Button clicked={(event) => this.submitHandler(visitElement.visit.VisitID)}><AiOutlineCheck style={{ fontSize: '50%' }}/></Button>
+                            </form>
+                        </div> 
+                        : null}
+                </div>
+                   
                 <MechanicVisit
                     visitId={visitElement.visit.VisitID}
                     description={visitElement.visit.VisitDescription}
@@ -83,7 +120,7 @@ class MechanicVisits extends Component {
                 </div>
                 <div>
                     {this.state.visits ? visits : null}
-                    <button className={classes.AddVisitButton}><AiFillPlusCircle/></button>
+                    <button className={classes.AddVisitButton} onClick={e => this.setState({ showAddVisitForm: !this.state.showAddVisitForm })}><AiFillPlusCircle/></button>
                 </div>
             </Aux>
         )

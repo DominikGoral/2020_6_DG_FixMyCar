@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { BASEPATH } from '../../../config'
 
 import classes from './WorkshopDetails.css'
 
@@ -42,7 +43,7 @@ class WorkshopDetails extends Component {
 
     async componentDidMount() {
         //console.log(this.props.match.params)
-        let url = 'http://localhost:8001/workshop/' + this.props.match.params.id
+        let url = BASEPATH + '/workshop/' + this.props.match.params.id
         
         axios.get(url)
             .then(response => {

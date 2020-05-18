@@ -32,3 +32,17 @@ Po kliknięciu w znak + obok napisu ,, Dodaj warsztat" jest wysuwany formularz w
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/10_formularz.png)
 Po dodaniu warsztatu
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/10_po_dodaniu.png)
+
+*********************************** Etap XI ******************************************
+
+Możliwość przeglądania wizyt
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/11_dashboard.png)
+Po zalogowaniu i przejściu do sekcji Warsztaty użytkownik może wybrać Wizyty
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/11_datepicker.png)
+Pokazywane są wówczas wizyty które ma zaplanowane zalogowany mechanik na dzień dzisiejszy, może on wybierać inne dni.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/11_wizyty.png)
+Po wybraniu nowej daty jest wysyłane zapytanie do bazy z inną datą.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/11_wizyty_2.png)
+Każda wizyta w zależności od danych w bazie jest przedstawiana w ten sposób, mamy wyświetloną godzinę i podstawowe informacje o wizycie.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/11_wizyty_szczegolowy.png)
+Po kliknięciu w wizytę są wyświetlane pozostałe informacje, takie jak: imię i nazwisko klienta, kwota do zapłaty, metoda płatności czy usługi do wykonania, które klient chciał mieć w tej wizycie.

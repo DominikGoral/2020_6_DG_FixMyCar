@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BASEPATH } from '../../config'
 import * as actionTypes from './actionTypes'
 
 export const authFail = (error) => {
@@ -25,7 +26,7 @@ export const dataUpdate = (email, firstName, surname, city, street, homeNumber, 
         }
         console.log(authData)
         //let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCwErEdHkTEGc1TM9KmlwqTMmdovQB70TU'
-        let url = 'http://localhost:8001/me'
+        let url = BASEPATH + '/me'
         // if(!isSignup) {
         //     url = ''
         // }

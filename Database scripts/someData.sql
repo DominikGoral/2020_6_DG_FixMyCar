@@ -7,6 +7,7 @@ INSERT INTO Address(City, Street, HomeNumber, FlatNumber, ZipCode)
 	VALUES ('Gorzów Wielkopolski', 'Żniwna', '2', NULL, '66-400');
 INSERT INTO Address(City, Street, HomeNumber, FlatNumber, ZipCode)
 	VALUES ('Krasowiec', NULL, '22', NULL, '66-446');
+
 	
 -------- CUSTOMERS ---------- 
 INSERT INTO Customer(Email, FirstName, Surname, Id_address, Password, PhoneNumber, CreditCardNumber)
@@ -17,10 +18,10 @@ INSERT INTO Customer(Email, FirstName, Surname, Id_address, Password, PhoneNumbe
 	VALUES ('maciek.maciek83@gmail.com', 'Maciej', 'Nowak', 3, 'hlcwdabla1', '+48669182564', NULL);
     
 -------- MECHANIC --------
-INSERT INTO Mechanic(Email, FirstName, Surname, Password, PhoneNumber, CreditCardNumber, Id_address, Role)
-	VALUES ('stanislaw.borowka17@gmail.com', 'Stanisław', 'Borówka', 'sadsdqw32', '+48669182564', NULL, 3, 'Owner');
-INSERT INTO Mechanic(Email, FirstName, Surname, Password, PhoneNumber, CreditCardNumber, Id_address, Role)
-	VALUES ('aro.bocian111@gmail.com', 'Arkadiusz', 'Bocian', 'sdr56gfdg', '+48655182564', NULL, 2, 'Employee');
+INSERT INTO Mechanic(Email, FirstName, Surname, Password, PhoneNumber, CreditCardNumber, Id_address)
+	VALUES ('stanislaw.borowka17@gmail.com', 'Stanisław', 'Borówka', 'sadsdqw32', '+48669182564', NULL, 3);
+INSERT INTO Mechanic(Email, FirstName, Surname, Password, PhoneNumber, CreditCardNumber, Id_address)
+	VALUES ('aro.bocian111@gmail.com', 'Arkadiusz', 'Bocian', 'sdr56gfdg', '+48655182564', NULL, 2);
 	
 -------- VEHICLES --------
 INSERT INTO Vehicle(VIN_Number, VehicleName, VehicleModel, Version, YearOfProduction, EngineCapacity, Fuel, Color, Type, Id_customer)
@@ -69,14 +70,14 @@ INSERT INTO Comment(Id_advertisement, Id_customer, CommentContent)
 	VALUES (1, 'maciek.maciek83@gmail.com', 'Po raz kolejny polecam. I tym razem wszystko zrobione na czas');
 	
 -------- VISITS --------
-INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic)
-	VALUES ('5993045632', 'maciek.maciek83@gmail.com', 'KMHDU4AD5AU136970', STR_TO_DATE('20200120 0800', '%Y%m%d %H%i'), 'Wymiana uszczelki pod głowicą', '8 h', 1649.54, 'gotówka', 'stanislaw.borowka17@gmail.com'); 
-INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic)
-	VALUES ('5993045632', 'maciek.maciek83@gmail.com', 'KMHDU4AD5AU136970', STR_TO_DATE('20190411 1500', '%Y%m%d %H%i'), 'Wymiana uszczelki pod głowicą', '8 h', 1649.54, 'gotówka', 'aro.bocian111@gmail.com'); 
-INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic)
-	VALUES ('5993045632', 'ania.makowskaaa@gmail.com', '2HGES26772H566107', STR_TO_DATE('20191130 1300', '%Y%m%d %H%i'), 'Został dokonany przegląd techniczny', '0.75 h', 100, 'karta- przy odbiorze', 'aro.bocian111@gmail.com'); 
-INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic)
-	VALUES ('5993045632', 'michal.kowalski83@gmail.com', 'JM3ER29L070133282', STR_TO_DATE('20190923 0800', '%Y%m%d %H%i'), 'Został dokonany przegląd techniczny i wymiana oleju', '1.75 h', 266.83, 'przelew', 'aro.bocian111@gmail.com'); 
+INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic, Done)
+	VALUES ('5993045632', 'maciek.maciek83@gmail.com', 'KMHDU4AD5AU136970', STR_TO_DATE('20200120 0800', '%Y%m%d %H%i'), 'Wymiana uszczelki pod głowicą', '8 h', 1649.54, 'gotówka', 'stanislaw.borowka17@gmail.com', true); 
+INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic, Done)
+	VALUES ('5993045632', 'maciek.maciek83@gmail.com', 'KMHDU4AD5AU136970', STR_TO_DATE('20190411 1500', '%Y%m%d %H%i'), 'Wymiana uszczelki pod głowicą', '8 h', 1649.54, 'gotówka', 'aro.bocian111@gmail.com', true); 
+INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic, Done)
+	VALUES ('5993045632', 'ania.makowskaaa@gmail.com', '2HGES26772H566107', STR_TO_DATE('20191130 1300', '%Y%m%d %H%i'), 'Przegląd techniczny', '0.75 h', 100, 'karta- przy odbiorze', 'aro.bocian111@gmail.com', true); 
+INSERT INTO Visit(Id_workshop, Id_customer, Id_vehicle, VisitDate, VisitDescription, VisitDurationTime, TotalPrice, PaymentMethod, Id_mechanic, Done)
+	VALUES ('5993045632', 'michal.kowalski83@gmail.com', 'JM3ER29L070133282', STR_TO_DATE('20190923 0800', '%Y%m%d %H%i'), 'Przegląd techniczny i wymiana oleju', '1.75 h', 266.83, 'przelew', 'aro.bocian111@gmail.com', true); 
 
 -------- MECHANICS IN WORKSHOPS --------
 INSERT INTO MechanicsInWorkshop(Id_mechanic, Id_workshop, Role)

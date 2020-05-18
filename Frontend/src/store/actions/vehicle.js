@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BASEPATH } from '../../config'
 import * as actionTypes from './actionTypes'
 
 export const authFail = (error) => {
@@ -24,7 +25,7 @@ export const addVehicle = (vin_Number, vehicleName, vehicleModel, version, yearO
         }
         console.log(authData)
         //let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCwErEdHkTEGc1TM9KmlwqTMmdovQB70TU'
-        let url = 'http://localhost:8001/vehicle/new-vehicle'
+        let url = BASEPATH + '/vehicle/new-vehicle'
         // if(!isSignup) {
         //     url = ''
         // }

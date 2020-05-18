@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
+import { BASEPATH } from '../../../config'
 
 import classes from './MechanicWorkshops.css'
 import WorkshopItem from '../../../components/Workshop/WorkshopItems/WorkshopItem/WorkshopItem'
@@ -17,7 +18,7 @@ class MechanicsWorkshops extends Component {
 
     componentDidMount() {
         console.log('dasdasd: ' + this.props.userId)
-        axios.get('http://localhost:8001/mechanic/workshop/all',{
+        axios.get(BASEPATH + '/mechanic/workshop/all',{
             params: {
                 userId: this.props.userId
             }

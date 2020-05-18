@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BASEPATH } from '../../config'
 import * as actionTypes from './actionTypes'
 
 export const authStart = () => {
@@ -46,7 +47,7 @@ export const authLogin = (email, password) => {
             password: password
         }
         //let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCwErEdHkTEGc1TM9KmlwqTMmdovQB70TU'
-        let url = 'http://localhost:8001/api/auth/signin'
+        let url = BASEPATH + '/api/auth/signin'
         // if(!isSignup) {
         //     url = ''
         // }
@@ -80,7 +81,7 @@ export const authRegister = (email, firstName, surname, city, street, homeNumber
         }
         console.log(authData)
         //let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCwErEdHkTEGc1TM9KmlwqTMmdovQB70TU'
-        let url = 'http://localhost:8001/api/auth/signup'
+        let url = BASEPATH + '/api/auth/signup'
         // if(!isSignup) {
         //     url = ''
         // }
