@@ -1,8 +1,12 @@
 module.exports = (sequelize, type) => {
     return sequelize.define('visit', {
+        VisitID: {
+            type: type.INTEGER(11),
+            primaryKey: true
+        },
         Id_workshop: {
             type: type.STRING(10),
-            primaryKey: true
+            primaryKey: false
         },
         Id_customer: {
             type: type.STRING(80),

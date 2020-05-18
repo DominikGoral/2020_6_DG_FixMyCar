@@ -12,4 +12,6 @@ module.exports = function(app) {
 
     app.get('/mechanic/visit/all', controller.allVisits)
 
+    app.get('/mechanic/visit/:id', controller.oneVisit)
+
 }

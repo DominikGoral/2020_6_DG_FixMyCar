@@ -1,11 +1,15 @@
 module.exports = (sequelize, type) => {
-    return sequelize.define('service', {
-        ServiceID: {
+    return sequelize.define('servicesinvisit', {
+        ServicesInVisitID: {
             type: type.INTEGER(11),
             primaryKey: true
         },
-        ServiceName: {
-            type: type.STRING(255),
+        Id_visit: {
+            type: type.INTEGER(11),
+            allowNull: false
+        },
+        Id_service: {
+            type: type.INTEGER(11),
             allowNull: false
         }
     },
