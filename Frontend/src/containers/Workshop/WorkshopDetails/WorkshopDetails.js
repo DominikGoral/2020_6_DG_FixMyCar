@@ -4,6 +4,7 @@ import { BASEPATH } from '../../../config'
 
 import classes from './WorkshopDetails.css'
 
+import Schedule from '../Schedule/Schedule'
 import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import WorkshopMap from '../../Map/WorkshopMap'
 
@@ -70,14 +71,14 @@ class WorkshopDetails extends Component {
     render() {
         return(
             <Aux>
-                <div className={classes.Map}>
+                {/* <div className={classes.Map}>
                     <WorkshopMap latitude={this.state.latitude} longitude={this.state.longitude}/>
-                </div>
+                </div> */}
                 <div className={classes.WorkshopName}>
                     <p>{this.state.WorkshopName}</p>
                 </div>
                 <div className={classes.Schedule}>
-                    <p>HARMONOGRAM</p>
+                    <Schedule />
                 </div>
                 <div className={classes.Description}>
                     <p style={{fontSize:'200%', marginLeft:'10%'}}>O nas</p>

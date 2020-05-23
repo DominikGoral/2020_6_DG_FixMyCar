@@ -12,6 +12,7 @@ import MechanicVisit from './MechanicVisit/MechanicVisit'
 import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import Button from '../../../components/UI/Button/Button'
 import Input from '../../../components/UI/Input/Input'
+import MechanicAddVisit from './MechanicAddVisit/MechanicAddVisit';
 
 class MechanicVisits extends Component {
     state = {
@@ -121,6 +122,7 @@ class MechanicVisits extends Component {
                 <div>
                     {this.state.visits ? visits : null}
                     <button className={classes.AddVisitButton} onClick={e => this.setState({ showAddVisitForm: !this.state.showAddVisitForm })}><AiFillPlusCircle/></button>
+                    <MechanicAddVisit />
                 </div>
             </Aux>
         )

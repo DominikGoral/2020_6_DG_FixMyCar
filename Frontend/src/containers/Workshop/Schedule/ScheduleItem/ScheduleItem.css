@@ -1,0 +1,16 @@
+.ScheduleItemBox {
+    position: absolute;
+    box-sizing: border-box;
+    float: left;
+    overflow: hidden;
+    padding: 1%;
+    background-color: crimson;
+}
+
+.startTime {
+    float: left;
+}
+
+.endTime {
+    float: left;
+}

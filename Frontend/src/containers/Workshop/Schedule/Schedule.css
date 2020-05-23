@@ -1,6 +1,12 @@
 .Schedule {
-    width: 80%;
     height: 250px;
-    margin-left: 10%;
     background-color: bisque;
+}
+
+.ScheduleDateInput {
+    width: 80px;
+    margin: auto;
+    background-color: #e9e2e1;
+    border-radius: 50px;
+    border-bottom: 0 solid rgb(197, 128, 25);
 }

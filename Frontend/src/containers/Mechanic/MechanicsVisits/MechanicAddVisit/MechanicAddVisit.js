@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
+import { AiOutlineSearch } from "react-icons/ai";
+
+import classes from './MechanicAddVisit.css'
+
+import Input from '../../../../components/UI/Input/Input'
+import Button from '../../../../components/UI/Button/Button'
 
 class MechanicAddVisit extends Component {
     state = {
-        controlsLogin: {
+        controls: {
             VIN_Number: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Podaj adres email'
+                    placeholder: 'Numer VIN pojazdu'
                 },
                 value: '',
                 validation: {
@@ -20,7 +26,7 @@ class MechanicAddVisit extends Component {
             VisitDate: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'password',
+                    type: 'date',
                     placeholder: 'Podaj hasło'
                 },
                 value: '',
@@ -35,7 +41,7 @@ class MechanicAddVisit extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Podaj adres email'
+                    placeholder: 'Opis wizyty...'
                 },
                 value: '',
                 validation: {
@@ -45,15 +51,36 @@ class MechanicAddVisit extends Component {
                 valid: false,
                 touched: false
             },
+            Id_workshop: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'number',
+                    placeholder: 'Wybierz warsztat'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
                 valid: false,
                 touched: false
             }
+        }
+    }
+
+    searchVehicle = () => {
+        
     }
 
     render() {
         return (
             <div>
-
+                <div>
+                    <Input
+                        elementConfig={this.state.controls.VIN_Number.elementConfig}
+                    ></Input><AiOutlineSearch onClick={this.searchVehicle}/>
+                </div>
+                
             </div>
         )
     }

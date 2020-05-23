@@ -4,9 +4,9 @@
 
 .Schedule {
     width: 80%;
+    box-sizing: border-box;
     margin-left: 10%;
-    height: 200px;
-    background-color: chartreuse;
+    padding: 1%;
 }
 
 .WorkshopName {
