@@ -2,13 +2,13 @@
     height: 56px;
     width: 100%;
     position: fixed;
+    padding-left: 5%;
     top: 0;
     left: 0;
-    background-color: #407ca1;
+    background-color: #95d5b2;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
     box-sizing: border-box;
     z-index: 90;
 }

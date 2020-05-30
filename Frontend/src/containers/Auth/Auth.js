@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Switch from 'react-switch'
 
 import classes from './Auth.css'
 import Input from '../../components/UI/Input/Input'
@@ -538,11 +539,17 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth}>
-                <Button
-                    clicked={this.switchCustomerWorkshopHandler}
-                    >{this.state.customer ? 'Jestem mechanikiem' : 'Jestem klientem'}</Button>
+                Mam konto <Switch 
+                    className="react-switch"
+                    onChange={this.switchAuthModeHandler}
+                    checked={this.state.isSignup}
+                />
+                Klient <Switch 
+                    className="react-switch"
+                    onChange={this.switchCustomerWorkshopHandler}
+                    checked={this.state.customer}
+                /> Mechanik
                 <form onSubmit={this.submitHandler}> 
-
                         {this.state.isSignup ? formLogin: 
                          this.state.customer ? formRegisterCustomer: formRegisterMechanic}
                         <Button>ZALOGUJ</Button>

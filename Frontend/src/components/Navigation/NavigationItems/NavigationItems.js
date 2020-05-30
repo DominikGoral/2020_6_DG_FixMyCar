@@ -1,4 +1,6 @@
 import React from 'react';
+import { BsHouseDoorFill } from "react-icons/bs";
+
 
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
@@ -9,6 +11,7 @@ const navigationItems = (props) => {
         <ul className={classes.NavigationItems}>
             {(props.isAuthenticated && props.mechanic)
                 ? <Aux>
+                    <NavigationItem link="/workshop/all"><BsHouseDoorFill/></NavigationItem>
                     <NavigationItem link="/workshop">Warsztat</NavigationItem>
                     <NavigationItem link="/logout">Wyloguj</NavigationItem>
                     <NavigationItem link="/mechanic/">Warsztaty</NavigationItem>
@@ -17,6 +20,7 @@ const navigationItems = (props) => {
             }
             {(props.isAuthenticated && props.customer)
                 ? <Aux>
+                    <NavigationItem link="/workshop/all"><BsHouseDoorFill/></NavigationItem>
                     <NavigationItem link="/workshop/all">Warsztaty</NavigationItem>
                     <NavigationItem link="/me">Mój profil</NavigationItem>
                     <NavigationItem link="/vehicle/all">Moje pojazdy</NavigationItem>
@@ -25,7 +29,10 @@ const navigationItems = (props) => {
                 : null
             }
             {!props.isAuthenticated
-                ? <NavigationItem link="/auth">Logowanie</NavigationItem>
+                ? <Aux>
+                    <NavigationItem link="/workshop/all"><BsHouseDoorFill/></NavigationItem>
+                    <NavigationItem link="/auth">Logowanie</NavigationItem>
+                  </Aux>
                 : null
             }
         </ul>

@@ -1,21 +1,18 @@
 .Workshop {
     padding-left: 10px;
-    background-color: #b1b1b1;
+    margin-bottom: 1%;
+    background-color: #fff;
     width: 80%;
-    margin-left: 10%;
-    border: 1px solid #777777;
-    border-radius: 10px 10px;
+    margin-left: 7.5%;
+    padding-left: 5%;
+    border: 1px solid #cecece;
     opacity: 0.9;
     color: black;
-    box-shadow: 4px 4px 5px 0px rgba(110,110,110,1);
+    box-shadow: 4px 4px 5px 0px rgb(139, 139, 139);
 }
 
-.ButtonMoreInfo {
-    padding-left: 70px;
-}
-
-.Workshop:hover {
-    background-color: #bebebe;
+.MoreInfoButton {
+    margin-left: 95%;
 }
 
 a {

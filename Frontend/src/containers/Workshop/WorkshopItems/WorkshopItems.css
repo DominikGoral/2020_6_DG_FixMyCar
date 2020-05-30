@@ -1,8 +1,30 @@
 .SearchInput {
-    width: 70%;
-    margin-left: 10%;
+    background-color: #b7e4c7;
+    width: 90%;
+    margin-left: 5%;
     height: 56px;
     font-size: 200%;
-    border-radius: 40px 40px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+}
+
+.Filters {
+    background-color: #74c69d;
+    padding-top: 2%;
+    width: 80%;
+    margin: 2% auto;
+    border-radius: 30px;
+}
+
+.AllWorkshops {
+    width: 76%;
+    margin: auto;
+    background-color: #b7e4c7;
+
+}
+
+.TypeOfWorkshop {
+    width: 15%;
+    background-color: #b7e4c7;
+    margin-left: 10%;
+    margin-bottom: 10px;
 }

@@ -1,16 +1,12 @@
 .ScheduleItemBox {
+    min-height: 150px;
     position: absolute;
     box-sizing: border-box;
+    margin: auto;
     float: left;
+    border-radius: 10px;
     overflow: hidden;
+    margin-top: 1%;
     padding: 1%;
-    background-color: crimson;
-}
-
-.startTime {
-    float: left;
-}
-
-.endTime {
-    float: left;
+    background-color: #df0021a1;
 }

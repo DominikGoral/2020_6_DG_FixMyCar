@@ -20,17 +20,27 @@ class ScheduleItem extends Component {
 
     calculateMargin = () => {
         let startTime = new Date(this.state.visitStartTime)
-        let workshopWorkStart = new Date(this.state.workshopWorkStart)
-        let fromWorkshopStartDuration = ((startTime - workshopWorkStart) / 10 / 3600).toFixed(2)
+        let workshopWorkStart = new Date(this.todayDate(this.state.visitStartTime, this.state.workshopWorkStart))
+        console.log(startTime)
+        console.log(workshopWorkStart)
+        let fromWorkshopStartDuration = ((( startTime - 7200000 ) - ( workshopWorkStart - 7200000 )) / 10 / 3600).toFixed(2)
         let percentageOfAllDay = (fromWorkshopStartDuration / this.state.howManyHoursWorkshopIsOpen).toFixed(1)
+        console.log(percentageOfAllDay)
         return percentageOfAllDay + '%'
     }
 
+    todayDate = (day, hour) => {
+        let date = day.substring(0, 11)
+        let endOfDate = day.substring(16, 24)
+        return date + hour + endOfDate
+    }
+
     render() {
+        //console.log(this.state.)
         return(
             <div className={classes.ScheduleItemBox} style={{ width: `${this.calculateWidth()}`, left: `${this.calculateMargin()}` }}>
-                <p className={classes.startTime}><b>{this.state.visitStartTime} - </b></p>
-                <p className={classes.endTime}><b>{this.state.visitEndTime}</b></p>
+                <p className={classes.startTime}><b>{(this.state.visitStartTime).substring(11,16)}</b></p>
+                <p className={classes.endTime}><b>{(this.state.visitEndTime).substring(11,16)}</b></p>
             </div>
         )
     }

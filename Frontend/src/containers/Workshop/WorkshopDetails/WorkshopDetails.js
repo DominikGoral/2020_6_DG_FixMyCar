@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { BASEPATH } from '../../../config'
+import { AiOutlineCalendar } from "react-icons/ai";
 
 import classes from './WorkshopDetails.css'
 
@@ -9,7 +10,8 @@ import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import WorkshopMap from '../../Map/WorkshopMap'
 
 class WorkshopDetails extends Component {
-    state = {
+    state = { 
+        NIP: this.props.match.params.id,
         City: null,
         FlatNumber: null,
         HomeNumber: null,
@@ -18,7 +20,9 @@ class WorkshopDetails extends Component {
         Description: null,
         WorkshopName: null,
         latitude: null,
-        longitude: null
+        longitude: null,
+        actualDay: null,
+        showSchedule: false
     }
 
     geoCode = (homeNumber, street, city) => {
@@ -43,42 +47,78 @@ class WorkshopDetails extends Component {
     }
 
     async componentDidMount() {
-        //console.log(this.props.match.params)
-        let url = BASEPATH + '/workshop/' + this.props.match.params.id
+        const workshopInfo = await this.getWorkshopInfo()
+        console.log(workshopInfo)
+        const addressData = workshopInfo.addressInfo
+        const workshopData = workshopInfo.workshopInfo
+        await this.setState({
+            NIP: workshopData.NIP,
+            Description: workshopData.Description,
+            Category: workshopData.Category,
+            WorkshopName: workshopData.WorkshopName,
+            City: addressData.City,
+            FlatNumber: addressData.FlatNumber,
+            HomeNumber: addressData.HomeNumber,
+            Street: addressData.Street
+        })
+        this.geoCode(this.state.HomeNumber, this.state.Street, this.state.City)
+        const visits = await this.getVisits()
+        this.setState({ visits: visits })
         
-        axios.get(url)
-            .then(response => {
-                //console.log(response)
-                const addressData = response.data.addressInfo
-                const workshopData = response.data.workshopInfo
-                this.setState({
-                    Description: workshopData.Description,
-                    Category: workshopData.Category,
-                    WorkshopName: workshopData.WorkshopName,
-                    City: addressData.City,
-                    FlatNumber: addressData.FlatNumber,
-                    HomeNumber: addressData.HomeNumber,
-                    Street: addressData.Street
-                })
-            })
-            .then(response => {
-                this.geoCode(this.state.HomeNumber, this.state.Street, this.state.City)
-            })
-        
+        // .then(response => {
+        //         console.log('workshop info')
+        //         console.log(response.data)
+        //         const addressData = response.data.addressInfo
+        //         const workshopData = response.data.workshopInfo
+        //         this.setState({
+        //             NIP: workshopData.NIP,
+        //             Description: workshopData.Description,
+        //             Category: workshopData.Category,
+        //             WorkshopName: workshopData.WorkshopName,
+        //             City: addressData.City,
+        //             FlatNumber: addressData.FlatNumber,
+        //             HomeNumber: addressData.HomeNumber,
+        //             Street: addressData.Street
+        //         })
+        //     })
+        //     .then(response => {
+        //         this.geoCode(this.state.HomeNumber, this.state.Street, this.state.City)
+        //     })
     }
+
+    getWorkshopInfo = async() => {
+        const workshopData = await axios.get(BASEPATH + '/workshop/' + this.props.match.params.id)
+        console.log('warsztaty')
+        console.log(workshopData)
+        return workshopData.data
+    }
+
+    getVisits = async() => {
+        //console.log('nip: ' + this.state.nip)
+        const visits = await axios.get(BASEPATH + '/visit/all', {
+            params: {
+                workshop: '5993045632',
+                day: '2020-05-17'
+            }
+        })
+        console.log('wizyty')
+        console.log(visits)
+        return visits.data
+    }
+
 
 
     render() {
         return(
             <Aux>
-                {/* <div className={classes.Map}>
+                <div className={classes.Map}>
                     <WorkshopMap latitude={this.state.latitude} longitude={this.state.longitude}/>
-                </div> */}
+                </div>
                 <div className={classes.WorkshopName}>
                     <p>{this.state.WorkshopName}</p>
-                </div>
+                </div> 
                 <div className={classes.Schedule}>
-                    <Schedule />
+                    <Schedule nip={this.state.NIP}/>
                 </div>
                 <div className={classes.Description}>
                     <p style={{fontSize:'200%', marginLeft:'10%'}}>O nas</p>
