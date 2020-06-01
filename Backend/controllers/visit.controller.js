@@ -1,4 +1,4 @@
-const { Visit ,Workshop, Customer, Vehicle, Service, ServicesInVisit } = require('../sequelize')
+const { Visit ,Workshop, Customer, Vehicle, Service, ServicesInVisit, MechanicsInWorkshops } = require('../sequelize')
 const { Op } = require('sequelize')
 
 exports.allVisits = (req, res) => {
@@ -44,6 +44,23 @@ takeServices = async (services) => {
     return servicesData
 }
 
+exports.allWorkshopVisit = (req, res) => {
+    let nextDay = new Date(req.query.day)
+    nextDay.setDate(nextDay.getDate() + 1)
+    Visit.findAll({
+        where: {
+            VisitDateStart: {
+                [Op.gte]: new Date(req.query.day),
+                [Op.lte]: nextDay
+            }, 
+            Id_workshop: req.query.workshop
+        }
+    })
+    .then(response => {
+        res.status(200).send(response)
+    })
+}
+
 exports.oneVisit = async (req, res) => {
     console.log('id wizyty: ' + req.params.id)
     const visit = await Visit.findOne({
@@ -87,4 +104,87 @@ exports.deleteVisit = async (req, res) => {
         }
     })
     
+}
+
+exports.addNewVisit = async (req, res) => {
+    const mechanicsInWorkshop = await MechanicsInWorkshops.findAll({
+        where: {
+            Id_workshop: req.body.Id_workshop,
+            Role: 'Employee'
+        }
+    })
+    mechanics = []
+    for(let i = 0; i < mechanicsInWorkshop.length; i++) {
+        mechanics.push(mechanicsInWorkshop[i].dataValues.Id_mechanic)
+    }
+    let numberOfMechanicsInWorkshop = mechanics.length
+    const visitsFirstPart = await Visit.findOne({
+        where: {
+            VisitDateStart: {
+                [Op.gte]: new Date(req.body.VisitDateStart),
+                [Op.lte]: new Date(req.body.VisitDateEnd)
+            }, 
+            Id_workshop: req.body.Id_workshop
+        }
+    })
+    const visitsSecondPart = await Visit.findOne({
+        where: {
+            VisitDateEnd: {
+                [Op.gte]: new Date(req.body.VisitDateStart),
+                [Op.lte]: new Date(req.body.VisitDateEnd)
+            }, 
+            Id_workshop: req.body.Id_workshop
+        }
+    })
+    const visitsThirdPart = await Visit.findOne({
+        where: {
+            VisitDateStart: {
+                [Op.lte]: new Date(req.body.VisitDateStart)
+            },
+            VisitDateEnd: {
+                [Op.gte]: new Date(req.body.VisitDateEnd)
+            }, 
+            Id_workshop: req.body.Id_workshop
+        }
+    })
+    let mechanicsSet = new Set()
+    if(visitsFirstPart != null) {
+        mechanicsSet.add(visitsFirstPart.dataValues.Id_mechanic)
+    }
+    if(visitsSecondPart != null) {
+        mechanicsSet.add(visitsSecondPart.dataValues.Id_mechanic)
+    }
+    if(visitsThirdPart != null) {
+        mechanicsSet.add(visitsThirdPart.dataValues.Id_mechanic)
+    }
+    let numberOfBusyMechanics = mechanicsSet.size
+    if(numberOfBusyMechanics < numberOfMechanicsInWorkshop) {
+        let availableMechanics = []
+        for(let i = 0; i < mechanics.length; i++) {
+            let mechanicFromWorkshop = mechanics[i]
+            for(let busyMechanic of mechanicsSet) {
+                if(busyMechanic !== mechanicFromWorkshop) {
+                    availableMechanics.push(mechanicFromWorkshop)
+                }
+            }
+        }
+
+        Visit.create({
+            Id_workshop: req.body.Id_workshop,
+            Id_customer: req.body.Id_customer,
+            Id_vehicle: req.body.Id_vehicle,
+            VisitDateStart: req.body.VisitDateStart,
+            VisitDescription: req.body.VisitDescription,
+            VisitDateEnd: req.body.VisitDateEnd,
+            TotalPrice: req.body.TotalPrice,
+            PaymentMethod: req.body.PaymentMethod,
+            Id_mechanic: 'aro.bocian111@gmail.com',
+            Done: false
+        })
+        .then(response => {
+            res.status(200).send(response)
+        })
+    } else {
+        res.status(400).send("Wybierz inną datę")
+    }
 }

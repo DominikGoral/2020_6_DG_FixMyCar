@@ -23,7 +23,33 @@
 
 .Comments {
     width: 80%;
-    height: 200px;
     margin-left: 10%;
-    background-color: #258832;
+    background-color: #d8f3dc;
+    padding: 2% 0;
+    box-sizing: border-box;
 }
+
+.CommentInput {
+    margin-left: 2%;
+}
+
+.NewCommentButton {
+    height: 40px;
+    border-radius: 20px;
+    background-color: #95d5b2;
+    margin-left: 90%;
+    margin-bottom: 2%;
+}
+
+.EditPanel {
+    border: 0;
+    border-top: 2px solid #74c69d;
+    margin-top: 2%;
+}
+
+.RateOptions {
+    background-color: #d8f3dc;
+    width: 10%;
+    margin-left: 2%;
+}
+

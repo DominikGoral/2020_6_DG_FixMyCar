@@ -31,6 +31,9 @@ require('./routes/user.routes')(app)
 require('./routes/workshop.routes')(app)
 require('./routes/vehicle.routes')(app)
 require('./routes/visit.routes')(app)
+require('./routes/workshopopenhours.routes')(app)
+require('./routes/offeredservices.routes')(app)
+require('./routes/comment.routes')(app)
 
 const PORT = process.env.PORT || 8001
 app.listen(PORT, () => {

@@ -1,4 +1,5 @@
 const { Workshop, Address, MechanicsInWorkshops } = require('../sequelize')
+const { Op } = require('sequelize')
 
 exports.allWorkshops = (req, res) => {
     Workshop.findAll()
@@ -7,31 +8,24 @@ exports.allWorkshops = (req, res) => {
     })
 }
 
-exports.oneWorkshop = (req, res) => {
-    Workshop.findOne({
+exports.oneWorkshop = async (req, res) => {
+    let nextDay = new Date(req.query.day)
+    nextDay.setDate(nextDay.getDate() + 1)
+    const workshopData = await Workshop.findOne({
         where: {
             NIP: req.params.id
         }
     })
-    .then(workshop => {
-        if(workshop) {
-            Address.findOne({
-                where: {
-                    AddressID: workshop.Id_address
-                }
-            })
-            .then(address => {
-                const workshopData = {
-                    workshopInfo: workshop,
-                    addressInfo: address 
-                }
-                res.status(200).send(workshopData)
-            })
+    const addressData = await Address.findOne({
+        where: {
+            AddressID: workshopData.Id_address
         }
     })
-    .catch(error => {
-        res.send(error)
-    })
+    const response = {
+        workshopInfo: workshopData,
+        addressInfo: addressData,
+    }
+    res.status(200).send(response)
 }
 
 exports.allMechanicsWorkshop = (req, res) => {

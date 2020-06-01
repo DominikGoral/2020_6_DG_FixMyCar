@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Switch from 'react-switch'
+import { AiOutlineSend } from "react-icons/ai";
+import userIcon from '../../images/user-icon.png'
 
 import classes from './Auth.css'
 import Input from '../../components/UI/Input/Input'
@@ -41,7 +43,7 @@ class Auth extends Component {
                 touched: false
             }
         },
-        controlsRegisterMechanic: {
+        controlsRegister: {
             Email: {
                 elementType: 'input',
                 elementConfig: {
@@ -65,7 +67,6 @@ class Auth extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    isEmail: true
                 },
                 valid: false,
                 touched: false
@@ -79,7 +80,6 @@ class Auth extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    isEmail: true
                 },
                 valid: false,
                 touched: false
@@ -163,181 +163,6 @@ class Auth extends Component {
                 elementConfig: {
                     type: 'text',
                     placeholder: 'Podaj numer telefonu'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            },
-            CreditCardNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Podaj numer karty kredytowej'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            },
-            Role: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        { value: 'Owner', displayValue: 'Właściciel' },
-                        { value: 'Employee', displayValue: 'Pracownik' }
-                    ]
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            }
-        },
-        controlsRegisterCustomer: {
-            Email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'email',
-                    placeholder: 'Podaj adres email'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
-            FirstName: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj imię'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
-            Surname: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj nazwisko'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
-            City: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj miasto'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            Street: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj ulicę'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            HomeNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj numer budynku'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            FlatNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj numer mieszkania'
-                },
-                value: ''
-            },
-            ZipCode: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj kod pocztowy'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                touched: false
-            },
-            Password: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'Podaj hasło'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            },
-            TelephoneNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Podaj numer telefonu'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            },
-            CreditCardNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Podaj numer karty kredytowej'
                 },
                 value: '',
                 validation: {
@@ -408,30 +233,30 @@ class Auth extends Component {
         this.setState({controlsLogin: updatedControls});
     }
 
-    inputChangedHandlerRegisterCustomer = (event, controlName) => {
-        const updatedControls = {
-            ...this.state.controlsRegisterCustomer,
-            [controlName]: {
-                ...this.state.controlsRegisterCustomer[controlName],
-                value: event.target.value,
-                valid: this.checkValidity(event.target.value, this.state.controlsRegisterCustomer[controlName].validation),
-                touched: true
-            }
-        };
-        this.setState({controlsRegisterCustomer: updatedControls});
-    }
+    // inputChangedHandlerRegisterCustomer = (event, controlName) => {
+    //     const updatedControls = {
+    //         ...this.state.controlsRegister,
+    //         [controlName]: {
+    //             ...this.state.controlsRegister[controlName],
+    //             value: event.target.value,
+    //             valid: this.checkValidity(event.target.value, this.state.controlsRegister[controlName].validation),
+    //             touched: true
+    //         }
+    //     };
+    //     this.setState({controlsRegister: updatedControls});
+    // }
 
-    inputChangedHandlerRegisterMechanic = (event, controlName) => {
+    inputChangedHandlerRegister = (event, controlName) => {
         const updatedControls = {
-            ...this.state.controlsRegisterMechanic,
+            ...this.state.controlsRegister,
             [controlName]: {
-                ...this.state.controlsRegisterMechanic[controlName],
+                ...this.state.controlsRegister[controlName],
                 value: event.target.value,
-                valid: this.checkValidity(event.target.value, this.state.controlsRegisterMechanic[controlName].validation),
+                valid: this.checkValidity(event.target.value, this.state.controlsRegister[controlName].validation),
                 touched: true
             }
         };
-        this.setState({controlsRegisterMechanic: updatedControls});
+        this.setState({controlsRegister: updatedControls});
     }
 
     submitHandler = (event) => {
@@ -439,37 +264,20 @@ class Auth extends Component {
         if(this.state.isSignup) {
             this.props.onAuthLogin(this.state.controlsLogin.Email.value, this.state.controlsLogin.Password.value)
         } else {
-            if(this.state.customer){
-                this.props.onAuthRegister(
-                    this.state.controlsRegisterCustomer.Email.value,
-                    this.state.controlsRegisterCustomer.FirstName.value,
-                    this.state.controlsRegisterCustomer.Surname.value,
-                    this.state.controlsRegisterCustomer.City.value,
-                    this.state.controlsRegisterCustomer.Street.value,
-                    this.state.controlsRegisterCustomer.HomeNumber.value,
-                    this.state.controlsRegisterCustomer.FlatNumber.value, 
-                    this.state.controlsRegisterCustomer.ZipCode.value,
-                    this.state.controlsRegisterCustomer.Password.value,
-                    this.state.controlsRegisterCustomer.TelephoneNumber.value,
-                    this.state.controlsRegisterCustomer.CreditCardNumber.value,
-                    null
-                )
-            } else {
-                this.props.onAuthRegister(
-                    this.state.controlsRegisterMechanic.Email.value,
-                    this.state.controlsRegisterMechanic.FirstName.value,
-                    this.state.controlsRegisterMechanic.Surname.value,
-                    this.state.controlsRegisterMechanic.City.value,
-                    this.state.controlsRegisterMechanic.Street.value,
-                    this.state.controlsRegisterMechanic.HomeNumber.value,
-                    this.state.controlsRegisterMechanic.FlatNumber.value, 
-                    this.state.controlsRegisterMechanic.ZipCode.value,
-                    this.state.controlsRegisterMechanic.Password.value,
-                    this.state.controlsRegisterMechanic.TelephoneNumber.value,
-                    this.state.controlsRegisterMechanic.CreditCardNumber.value,
-                    this.state.controlsRegisterMechanic.Role.value
-                )
-            }
+            this.props.onAuthRegister(
+                this.state.controlsRegister.Email.value,
+                this.state.controlsRegister.FirstName.value,
+                this.state.controlsRegister.Surname.value,
+                this.state.controlsRegister.City.value,
+                this.state.controlsRegister.Street.value,
+                this.state.controlsRegister.HomeNumber.value,
+                this.state.controlsRegister.FlatNumber.value, 
+                this.state.controlsRegister.ZipCode.value,
+                this.state.controlsRegister.Password.value,
+                this.state.controlsRegister.TelephoneNumber.value,
+                //this.state.controlsRegisterMechanic.CreditCardNumber.value,
+                this.state.customer
+            )
         }
     }
 
@@ -495,15 +303,15 @@ class Auth extends Component {
             />
         ))
 
-        const formElementsArrayRegisterMechanic = []
-        for(let key in this.state.controlsRegisterMechanic) {
-            formElementsArrayRegisterMechanic.push({
+        const formElementsArrayRegister = []
+        for(let key in this.state.controlsRegister) {
+            formElementsArrayRegister.push({
                 id: key,
-                config: this.state.controlsRegisterMechanic[key]
+                config: this.state.controlsRegister[key]
             })
         }
 
-        const formRegisterMechanic = formElementsArrayRegisterMechanic.map(formElement => (
+        const formRegister = formElementsArrayRegister.map(formElement => (
             <Input 
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -512,52 +320,42 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandlerRegisterMechanic( event, formElement.id )}
-            />
-        ))
-
-        const formElementsArrayRegisterCustomer = []
-        for(let key in this.state.controlsRegisterCustomer) {
-            formElementsArrayRegisterCustomer.push({
-                id: key,
-                config: this.state.controlsRegisterCustomer[key]
-            })
-        }
-
-        const formRegisterCustomer = formElementsArrayRegisterCustomer.map(formElement => (
-            <Input 
-                key={formElement.id}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandlerRegisterCustomer( event, formElement.id )}
+                changed={(event) => this.inputChangedHandlerRegister( event, formElement.id )}
             />
         ))
 
         return (
-            <div className={classes.Auth}>
-                Mam konto <Switch 
-                    className="react-switch"
-                    onChange={this.switchAuthModeHandler}
-                    checked={this.state.isSignup}
-                />
-                Klient <Switch 
-                    className="react-switch"
-                    onChange={this.switchCustomerWorkshopHandler}
-                    checked={this.state.customer}
-                /> Mechanik
-                <form onSubmit={this.submitHandler}> 
-                        {this.state.isSignup ? formLogin: 
-                         this.state.customer ? formRegisterCustomer: formRegisterMechanic}
-                        <Button>ZALOGUJ</Button>
-                </form>
-                <Button
-                    clicked={this.switchAuthModeHandler}
-                    >{this.state.isSignup ? 'Zaloguj się' : 'Zarejestruj się'}</Button>
-            </div>
+            <Aux>
+                <div>
+                    <div className={classes.UserIcon}>
+                        <img src={userIcon}/>
+                    </div>
+                    <div className={classes.Auth}>
+                        <div className={classes.LoginRegister}>
+                            Mam już konto <Switch 
+                                className={classes.ReactSwitch}
+                                onChange={this.switchAuthModeHandler}
+                                checked={this.state.isSignup}
+                            />
+                        </div>
+                        <form onSubmit={this.submitHandler}> 
+                                {this.state.isSignup ? formLogin: 
+                                this.state.customer ? formRegister: formRegister}
+                                {!this.state.isSignup
+                                    ?    <div className={classes.UserType}>
+                                            Klient <Switch 
+                                                className={classes.ReactSwitch}
+                                                onChange={this.switchCustomerWorkshopHandler}
+                                                checked={this.state.customer}
+                                            /> Mechanik
+                                        </div>
+                                    : null
+                                }
+                                <Button><AiOutlineSend/></Button>
+                        </form>
+                    </div>
+                </div>
+            </Aux>
         )
     }
 }
@@ -565,8 +363,8 @@ class Auth extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onAuthLogin: (email, password) => dispatch(actions.authLogin(email, password)),
-        onAuthRegister: (email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, creditCardNumber, role) => {
-            dispatch(actions.authRegister(email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, creditCardNumber, role))
+        onAuthRegister: (email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, role) => {
+            dispatch(actions.authRegister(email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, role))
         }
     }
 }

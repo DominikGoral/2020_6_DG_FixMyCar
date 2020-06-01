@@ -1,9 +1,22 @@
 .Auth {
+  float: left;
+  margin-top: 17vh;
     text-align: center;
-    margin-left: 30%;
-    width: 40%;
-    background-color: #7eb5d8;
+    margin-left: 45%;
+    width: 30%;
+    padding: 1% 0;
+    box-sizing: border-box;
+    background-color: #95d5b2;
     border-radius: 20px;
+}
+
+.UserIcon {
+  top: 14vh;
+  left: 15%;
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
 }
 
 .switch {
@@ -66,4 +79,14 @@
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+  .UserType {
+    width: 100%;
+  }
+
+  .LoginRegister {
+    width: 100%;
+    margin-left: 15%;
+    margin-bottom: 2%;
   }

@@ -16,7 +16,7 @@ module.exports = (sequelize, type) => {
             type: type.STRING(17),
             allowNull: false
         },
-        VisitDate: {
+        VisitDateStart: {
             type: type.DATE(),
             allowNull: false
         },
@@ -24,8 +24,8 @@ module.exports = (sequelize, type) => {
             type: type.TEXT,
             allowNull: false
         },
-        VisitDurationTime: {
-            type: type.STRING(60),
+        VisitDateEnd: {
+            type: type.DATE(),
             allowNull: false
         },
         TotalPrice: {
@@ -42,6 +42,10 @@ module.exports = (sequelize, type) => {
         },
         Id_customer: {
             type: type.STRING(80),
+            allowNull: false
+        },
+        Done: {
+            type: type.BOOLEAN,
             allowNull: false
         }
     },

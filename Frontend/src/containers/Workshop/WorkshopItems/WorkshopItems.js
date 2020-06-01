@@ -43,12 +43,6 @@ class WorkshopItems extends Component {
                                 onChange={this.handleInputChange} 
                             />
                         </form>
-                        <select name="typesOfWorkshop" className={classes.TypeOfWorkshop}>
-                            <option value="all">Wszystkie</option>
-                            <option value="wulkanizacja">Wulkanizacja</option>
-                            <option value="mechanika">Mechanika</option>
-                            <option value="elektryka">Elektryka</option>
-                        </select>
                     </div>
                     <div className={classes.AllWorkshops}>
                         {this.state.filteredWorkshops.map(workshop => (

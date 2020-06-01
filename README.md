@@ -46,3 +46,35 @@ Po wybraniu nowej daty jest wysyłane zapytanie do bazy z inną datą.
 Każda wizyta w zależności od danych w bazie jest przedstawiana w ten sposób, mamy wyświetloną godzinę i podstawowe informacje o wizycie.
 ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/11_wizyty_szczegolowy.png)
 Po kliknięciu w wizytę są wyświetlane pozostałe informacje, takie jak: imię i nazwisko klienta, kwota do zapłaty, metoda płatności czy usługi do wykonania, które klient chciał mieć w tej wizycie.
+
+*********************************** Etap XII ******************************************
+W tym etapie miałem umożliwić klientom możliwość przeglądania wolnych miejsc na wizyte w warsztacie.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/12.1.png)
+Tak jak widać na powyższym obrazku mamy do dyspozycji miejsce na którym widzimy zajęte godziny. Mamy pasek informujący od której do której warsztat jest otwarty. W tym przypadku jest to godzina 8-20. 
+ ![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/12.2.png)
+Na powyższym obrazku widać, że warsztat jest zajęty 17.05.2020 w godzinach 8-16 i 17:00-17:45 ( a więc wolny czas jest między tymi godzinami albo po godzinie 17:45)
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/12.4.png)
+Po naciśnięciu przycisku + wyświetla nam się formularz, który musimy wypełnić, gdy chcemy zarezerwować wizytę. Musimy wybrać pojazd z naszych dostępnych pojazdów, musimy podać date wizyty, przewidywany jej koniec i możemy umieścić opis, co chcemy dokonać podczas tej wizyty.
+Spośród dostępnych serwisów możemy wybrać ten który nas interesuje.
+Po dodaniu mamy nowy element w harmonogramie.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/12.3.png)
+
+*********************************** Etap XIII ******************************************
+W tym etapie miałem zaimplementować możliwość dodawania komentarzy i ocen do warsztatów.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.1.png)
+Na samym dole znajdują się komentarze. Ocena jest przedstawiona za pomocą gwiazdek.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.2.png)
+Ocene można wybrać od 1 do 5.
+Można modyfikować komentarze, aczkolwiek edytować można tylko swoje komentarze. Na powyższych zrzutach ekranu widać, że mamy przyciski po prawej stronie udostępnione z wykorzystaniem ikon.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.3.png)
+Po kliknięciu w ikonę edycji zmienia nam się kolor inputu i możemy wpisać do niego inną wartość.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.4.png)
+Po ponownym kliknięciu w ikonke edycji zmiana zostaje zapisana w bazie danych. 
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.5.png)
+Po kliknięciu na ikonkę w zależności od tego z jakiego stanu na jaki zmieniamy, wysyłamy update requesta do api.
+Przycisk do usuwania także jest dostępny tylko dla autora komentarza. 
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.6.png)
+Ikonki po najechaniu na nie zmieniają kolor na biały.
+![my_cars](https://github.com/DominikGoral/2020_6_DG_FixMyCar/blob/master/images/13.7.png)
+Po usunięciu komentarz znika z listy komentarzy.
+

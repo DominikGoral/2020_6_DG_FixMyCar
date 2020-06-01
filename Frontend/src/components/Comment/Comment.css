@@ -1,0 +1,64 @@
+.Comment {
+    width: 95%;
+    margin: 0 auto;
+    min-height: 10vh;
+    background-color: #95d5b2;
+    border-bottom: 2px solid #d8f3dc;
+}
+
+.Rating {
+    position: relative;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+
+.Rating input {
+}
+
+.Rating label {
+    display: block;
+    cursor: pointer;
+    width: 10px;
+    background: #ccc;
+}
+
+.Rating label::before {
+    position: relative;
+    display: block;
+    font-size: 10px;
+}
+
+.EditButton {
+    margin-left: 93%;
+    font-size: 200%;
+}
+
+.EditButton:hover {
+    color: #fff;
+}
+
+.DeleteButton {
+    font-size: 200%;
+}
+
+.DeleteButton:hover {
+    color: #fff;
+}
+
+.Comment input:enabled {
+    margin-left: 10%;
+    margin-bottom: 1%;
+    background-color: #d8f3dc;
+}
+
+.Comment input:disabled {
+    margin-left: 10%;
+    margin-bottom: 1%;
+    background-color: #95d5b2;
+}
+
+.FirstNameInfo {
+    margin-left: 4%;
+    float: left;
+}

@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken')
 var bcrypt = require('bcryptjs')
 
 exports.signUp = (req, res) => {
-    if(req.body.role == null) {
+    if(req.body.role == false) {
         Address.create({
             City: req.body.city,
             FlatNumber: req.body.flatNumber,
@@ -21,7 +21,7 @@ exports.signUp = (req, res) => {
                 Id_address: address.AddressID,
                 Password: bcrypt.hashSync(req.body.password, 8),
                 PhoneNumber: req.body.phoneNumber,
-                CreditCardNumber: req.body.creditCardNumber
+                //CreditCardNumber: req.body.creditCardNumber
             })
             .then(customer => {
                 res.send({ message: 'Rejestracja zakonczona pomyslnie!' })
@@ -46,7 +46,7 @@ exports.signUp = (req, res) => {
                 Id_address: address.AddressID,
                 Password: bcrypt.hashSync(req.body.password, 8),
                 PhoneNumber: req.body.phoneNumber,
-                CreditCardNumber: req.body.creditCardNumber,
+                //CreditCardNumber: req.body.creditCardNumber,
                 Role: req.body.role
             })
             .then(mechanic => {

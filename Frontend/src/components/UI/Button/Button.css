@@ -1,22 +1,21 @@
 .Button {
-    background-color: #eca13e;
+    background-color: #ffffff;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid #c7770f;
-    color: rgb(49, 49, 49);
+    color: #74c69d;
     outline: none;
     cursor: pointer;
     font: inherit;
     padding: 10px;
     margin: 10px;
-    font-weight: bold;
+    transition: linear 0.2s;
 }
 
 .Button:hover {
-    background-color: #c7770f;
+    background-color: #abd8bf;
+    color: black;
 }
 
 .Button:disabled {
-    color: #ccc;
     cursor: not-allowed;
 }

@@ -13,6 +13,11 @@ module.exports = function(app) {
     app.get('/mechanic/visit/all', controller.allVisits)
 
     app.get('/mechanic/visit/:id', controller.oneVisit)
+
+    app.get('/visit/all', controller.allWorkshopVisit)
+
+    app.post('/visit/new-visit', controller.addNewVisit)
+
     app.delete('/mechanic/visit/:id', controller.deleteVisit)
 
 }

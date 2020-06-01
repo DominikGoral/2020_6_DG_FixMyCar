@@ -62,7 +62,7 @@ export const authLogin = (email, password) => {
     }
 }
 
-export const authRegister = (email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, creditCardNumber, role) => {
+export const authRegister = (email, firstName, surname, city, street, homeNumber, flatNumber, zipCode, password, telephoneNumber, role) => {
     return dispatch => {
         dispatch(authStart())
         const authData = {
@@ -76,7 +76,7 @@ export const authRegister = (email, firstName, surname, city, street, homeNumber
             flatNumber: flatNumber,
             zipCode: zipCode,
             phoneNumber: telephoneNumber,
-            creditCardNumber: creditCardNumber,
+            //creditCardNumber: creditCardNumber,
             role: role
         }
         console.log(authData)
