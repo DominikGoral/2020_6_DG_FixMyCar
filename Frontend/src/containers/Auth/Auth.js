@@ -141,6 +141,7 @@ class Auth extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    isZipCode: true
                 },
                 valid: false,
                 touched: false
@@ -210,6 +211,11 @@ class Auth extends Component {
 
         if (rules.isEmail) {
             const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = pattern.test(value) && isValid
+        }
+
+        if (rules.isZipCode) {
+            const pattern = /[0-9]{2}[-][0-9]{3}/
             isValid = pattern.test(value) && isValid
         }
 

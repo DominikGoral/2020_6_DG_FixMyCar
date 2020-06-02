@@ -7,9 +7,6 @@ import { BASEPATH } from '../../../config'
 const axios = require('axios')
 
 
-
-
-
 class WorkshopItems extends Component {
     state = {
         workshops: [],
@@ -29,8 +26,21 @@ class WorkshopItems extends Component {
         })
     }
 
+    handleInputChange = (e) => {
+        this.setState({ query: e.target.value })
+    }
+
+    filterWorkshop = (e) => {
+        const tempArray = []
+        for(let i = 0; i < this.state.workshops.length; i++) {
+            if(this.state.workshops[i].WorkshopName.toLowerCase().includes(e.target.value)) {
+                tempArray.push(this.state.workshops[i])
+            }
+        }
+        return tempArray
+    }
+
     render() {
-        console.log(this.state)
         return (
             <Aux>
                 <div>
@@ -40,7 +50,11 @@ class WorkshopItems extends Component {
                                 className={classes.SearchInput}
                                 placeholder="Search for..."
                                 value={this.state.query}
-                                onChange={this.handleInputChange} 
+                                onChange={e => {
+                                    this.handleInputChange(e)
+                                    const filteredWorkshops = this.filterWorkshop(e)
+                                    this.setState({ filteredWorkshops: filteredWorkshops })
+                                }} 
                             />
                         </form>
                     </div>

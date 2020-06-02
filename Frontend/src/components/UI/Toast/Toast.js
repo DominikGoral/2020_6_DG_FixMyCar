@@ -7,7 +7,7 @@ const toast = (props) => {
     return (
         <div className={classes.NotificationContainer}>
             <div className={classes.NotificationImage}>
-                {/* <DeleteIcon/> */}
+                {/* <img src={DeleteIcon} alt="errorIcon"/> */}
             </div>
             <div>
                 {/* <p className={classes.NotificationTitle}>Title</p> */}

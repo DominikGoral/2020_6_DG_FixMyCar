@@ -20,6 +20,13 @@
     width: 100%;
     color:#000;
 }
+.Invalid {
+    border:0;
+    border-bottom:2px solid rgb(216, 24, 24);  
+    background:#95d5b2;
+    width: 100%;
+    color:#000;
+}
 .InputElement:focus {
     border:none;	
     outline:none;
