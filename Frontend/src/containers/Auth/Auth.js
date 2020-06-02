@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Switch from 'react-switch'
 import { AiOutlineSend } from "react-icons/ai";
 import userIcon from '../../images/user-icon.png'
+import Toast from '../../components/UI/Toast/Toast'
 
 import classes from './Auth.css'
 import Input from '../../components/UI/Input/Input'
@@ -327,6 +328,7 @@ class Auth extends Component {
         return (
             <Aux>
                 <div>
+                    {this.props.error ? <Toast errorMessage={this.props.error}/> : null}
                     <div className={classes.UserIcon}>
                         <img src={userIcon}/>
                     </div>
@@ -360,6 +362,12 @@ class Auth extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        error: state.auth.error
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         onAuthLogin: (email, password) => dispatch(actions.authLogin(email, password)),
@@ -369,4 +377,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

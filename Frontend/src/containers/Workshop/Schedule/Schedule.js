@@ -41,6 +41,7 @@ class Schedule extends Component {
                 day: date
             }
         })
+        console.log('wizyty')
         console.log(visits.data)
         return visits.data
     }
@@ -85,10 +86,13 @@ class Schedule extends Component {
                             id={classes.DatePickerInput} 
                             value={this.state.actualDate} 
                             onChange={async e => {
+                                console.log(e.target.value)
                                 const newDate = e.target.value
-                                await this.setState({ actualDate: newDate })
+                                this.setState({ actualDate: newDate })
                                 const visits = await this.getVisits(newDate)
-                                await this.setState({ visits: visits })
+                                this.setState({ visits: [] })
+                                this.setState({ visits: visits })
+                                
                             }}
                         />
                     </div>

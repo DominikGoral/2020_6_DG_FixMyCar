@@ -1,0 +1,24 @@
+.NotificationContainer {
+    font-size: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 10%;
+    right: 2%;
+    border: 4px dashed #d9534f;
+    border-radius: 20px;
+    padding: 0 2%;
+    background-color: #f3c4c2;
+    animation: showToast 0.7s;
+}
+
+@keyframes showToast {
+    0% {
+        right: -100%;
+    }
+    85% {
+        right: 4%;
+    }
+    100% {
+        right: 2%;;
+    }
+}
