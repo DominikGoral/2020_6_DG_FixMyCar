@@ -4,15 +4,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import VehicleItem from '../../../components/Vehicle/VehicleItems/VehicleItem/VehicleItem'
+import axios from 'axios'
 import Button from '../../../components/UI/Button/Button'
 import Input from '../../../components/UI/Input/Input'
 import * as actions from '../../../store/actions/index'
+import Toast from '../../../components/UI/Toast/Toast'
 import { BASEPATH } from '../../../config'
-
-const axios = require('axios')
 
 class VehicleItems extends Component {
     state = {
+        message: '',
         vehicles: [],
         filteredWorkshops: [],
         query: '',
@@ -26,8 +27,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -40,8 +40,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -54,8 +53,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -94,8 +92,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -108,8 +105,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -122,8 +118,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -136,7 +131,7 @@ class VehicleItems extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -221,20 +216,42 @@ class VehicleItems extends Component {
         this.setState({ adding: !this.state.adding })
     }
 
-    addVehicle = (event) => {
-        event.preventDefault()
-        this.props.onAddVehicle(
-            this.state.vehicleForm.VIN_Number.value,
-            this.state.vehicleForm.VehicleName.value,
-            this.state.vehicleForm.VehicleModel.value,
-            this.state.vehicleForm.Version.value,
-            this.state.vehicleForm.YearOfProduction.value,
-            this.state.vehicleForm.EngineCapacity.value,
-            this.state.vehicleForm.Fuel.value,
-            this.state.vehicleForm.Color.value,
-            this.state.vehicleForm.Type.value,
-            this.props.userId
-        )
+    // addVehicle = (event) => {
+    //     event.preventDefault()
+    //     this.props.onAddVehicle(
+    //         this.state.vehicleForm.VIN_Number.value,
+    //         this.state.vehicleForm.VehicleName.value,
+    //         this.state.vehicleForm.VehicleModel.value,
+    //         this.state.vehicleForm.Version.value,
+    //         this.state.vehicleForm.YearOfProduction.value,
+    //         this.state.vehicleForm.EngineCapacity.value,
+    //         this.state.vehicleForm.Fuel.value,
+    //         this.state.vehicleForm.Color.value,
+    //         this.state.vehicleForm.Type.value,
+    //         this.props.userId
+    //     )
+    // }
+
+    addVehicle = (e) => {
+        e.preventDefault()
+        const newVehicleData = {
+            vin_Number: this.state.vehicleForm.VIN_Number.value,
+            vehicleName: this.state.vehicleForm.VehicleName.value,
+            vehicleModel: this.state.vehicleForm.VehicleModel.value,
+            version: this.state.vehicleForm.Version.value,
+            yearOfProduction: this.state.vehicleForm.YearOfProduction.value,
+            engineCapacity: this.state.vehicleForm.EngineCapacity.value,
+            fuel: this.state.vehicleForm.Fuel.value,
+            color: this.state.vehicleForm.Color.value,
+            type: this.state.vehicleForm.Type.value,
+            userId: this.props.userId
+        }
+        axios.post(BASEPATH + '/vehicle/new-vehicle', newVehicleData)
+            .then(response => {
+                console.log('odpowiedz')
+                console.log(response)
+                this.setState({ message: response.data.message })
+            })
     }
 
     render() {
@@ -262,22 +279,30 @@ class VehicleItems extends Component {
 
         return (
             <Aux>
+                {this.state.message ? <Toast toastType='success' errorMessage={this.state.message}/> : null}
                 <div>
                     <div className={classes.Vehicles}>
                         {this.state.vehicles.map(vehicle => (
-                        <Link to={'/vehicle/' + vehicle.VIN_Number} key={vehicle.VIN_Number}>
-                            <VehicleItem    
+                        // <Link to={'/vehicle/' + vehicle.VIN_Number} key={vehicle.VIN_Number}>
+                        //     <VehicleItem    
+                        //         name={vehicle.VehicleName}
+                        //         category={vehicle.VehicleModel}                                                            
+                        //     >
+                        //     </VehicleItem>
+                        // </Link>
+                        <VehicleItem    
                                 name={vehicle.VehicleName}
                                 category={vehicle.VehicleModel}                                                            
                             >
-                            </VehicleItem>
-                        </Link>))}
+                        </VehicleItem>
+                        ))}
                     </div>
                     <div className={classes.ButtonAddSection}>
                         <div className={classes.ButtonAdd} onClick={this.showHideForm}><p>+</p></div>
                         {this.state.adding 
                             ? <form onSubmit={this.addVehicle}>
                                 {formVehicle}
+                                <button onClick={e => this.addVehicle(e)}>Dodaj</button>
                             </form> 
                             : null
                         }
@@ -294,12 +319,12 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAddVehicle: (vin_Number, vehicleName, vehicleModel, version, yearOfProduction, engineCapacity, fuel, color, type, id_customer) => {
-            dispatch(actions.addVehicle(vin_Number, vehicleName, vehicleModel, version, yearOfProduction, engineCapacity, fuel, color, type, id_customer))
-        }
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onAddVehicle: (vin_Number, vehicleName, vehicleModel, version, yearOfProduction, engineCapacity, fuel, color, type, id_customer) => {
+//             dispatch(actions.addVehicle(vin_Number, vehicleName, vehicleModel, version, yearOfProduction, engineCapacity, fuel, color, type, id_customer))
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VehicleItems)
+export default connect(mapStateToProps)(VehicleItems)

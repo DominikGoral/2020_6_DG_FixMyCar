@@ -20,6 +20,37 @@
     background-color: #bebebe;
 }
 
+.OptionBox {
+    position: relative;
+    left: 77%;
+    animation: showOptions 0.5s linear;
+}
+
+.InfoButton,
+.DeleteButton {
+    float: left;
+    display: flex;
+    margin-right: 1%;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: grey;
+}
+
+@keyframes showOptions {
+    0% {
+        margin-top: -2%;
+    }
+    85% {
+        margin-top: 2%;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
 a {
     text-decoration: none;
 }

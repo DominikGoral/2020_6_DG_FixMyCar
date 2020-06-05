@@ -334,7 +334,7 @@ class Auth extends Component {
         return (
             <Aux>
                 <div>
-                    {this.props.error ? <Toast errorMessage={this.props.error}/> : null}
+                    {this.props.error ? <Toast toastType="error" errorMessage={this.props.error}/> : null}
                     <div className={classes.UserIcon}>
                         <img src={userIcon}/>
                     </div>

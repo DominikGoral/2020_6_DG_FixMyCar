@@ -15,7 +15,7 @@
 .ButtonAdd {
     width: 60px;
     height: 60px;
-    margin-left: 85%;
+    margin: 2% auto;
     display: flex;
     background-color: #f7df0e;
     justify-content: center;
