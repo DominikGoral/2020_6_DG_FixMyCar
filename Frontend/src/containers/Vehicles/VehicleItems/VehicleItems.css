@@ -1,3 +1,30 @@
 .DeleteVehicle {
     float: left;
 }
+
+.Vehicles {
+    width: 60%;
+    margin: auto;
+}
+
+.ButtonAddSection {
+    width: 50%;
+    margin: auto;
+}
+
+.ButtonAdd {
+    width: 60px;
+    height: 60px;
+    margin-left: 85%;
+    display: flex;
+    background-color: #f7df0e;
+    justify-content: center;
+    align-items: center;
+    font-size: 250%;
+    border-radius: 30px;
+    transition: 0.3s linear;
+}
+
+.ButtonAdd:hover {
+    background-color: #d3c015;
+}

@@ -1,7 +1,21 @@
 .ProfileBox {
     padding: 16px;
     margin-left: 30%;
-    background-color: #c0c0c0;
     border-radius: 10px 10px;
     width: 40%;
+}
+
+.PersonalDataSection {
+    padding: 2% 1%;
+    border-bottom: 2px solid grey;
+}
+
+.AddressDataSection {
+    padding: 2% 1%;
+    border-bottom: 2px solid grey;
+}
+
+.PasswordDataSection {
+    padding: 2% 1%;
+    border-bottom: 2px solid grey;
 }

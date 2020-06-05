@@ -1,6 +1,6 @@
 .Input {
-    width: 60%;
-    margin-left: 20%;
+    width: 80%;
+    margin-left: 10%;
 	margin-bottom:25px;
 }
 
@@ -16,14 +16,17 @@
 .InputElement {
     border:0;
     border-bottom:2px solid #555;  
-    background:#95d5b2;
+    background: white;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 1% 5%;
     width: 100%;
     color:#000;
 }
 .Invalid {
     border:0;
     border-bottom:2px solid rgb(216, 24, 24);  
-    background:#95d5b2;
+    background:white;
     width: 100%;
     color:#000;
 }

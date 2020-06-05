@@ -1,5 +1,6 @@
 .SearchInput {
-    background-color: #b7e4c7;
+    background-color: white;
+    border: 1px solid grey;
     width: 90%;
     margin-left: 5%;
     height: 56px;
@@ -8,10 +9,9 @@
 }
 
 .Filters {
-    background-color: #74c69d;
-    padding-top: 2%;
+    /* background-color: #74c69d; */
     width: 80%;
-    margin: 2% auto;
+    margin: auto;
     border-radius: 30px;
 }
 

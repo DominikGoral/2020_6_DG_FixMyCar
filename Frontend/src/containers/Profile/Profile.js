@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { FaUser } from 'react-icons/fa'
+import { AiFillEdit } from 'react-icons/ai'
 import * as actions from '../../store/actions/index'
 import { BASEPATH } from '../../config'
 
@@ -24,21 +25,8 @@ class Profile extends Component {
         HomeNumber: null,
         FlatNumber: null,
         ZipCode: null,
+        editMode: false,
         dataForm: {
-            Email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'email',
-                    placeholder: 'Podaj adres email'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
             FirstName: {
                 elementType: 'input',
                 elementConfig: {
@@ -141,6 +129,20 @@ class Profile extends Component {
                 valid: false,
                 touched: false
             },
+            Email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Podaj adres email'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
             TelephoneNumber: {
                 elementType: 'input',
                 elementConfig: {
@@ -154,21 +156,7 @@ class Profile extends Component {
                 },
                 valid: false,
                 touched: false
-            },
-            CreditCardNumber: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Podaj numer karty kredytowej'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
-            }  
+            }
         }
     }
     
@@ -183,7 +171,6 @@ class Profile extends Component {
                     FirstName: profileData.FirstName,
                     Surname: profileData.Surname,
                     PhoneNumber: profileData.PhoneNumber,
-                    CreditCardNumber: profileData.CreditCardNumber,
                     Password: profileData.Password,
                     City: addressData.City,
                     Street: addressData.Street,
@@ -293,6 +280,7 @@ class Profile extends Component {
                             value: this.state.ZipCode,
                             validation: {
                                 required: true,
+                                isZipCode: true
                             },
                             valid: false,
                             touched: false
@@ -318,20 +306,6 @@ class Profile extends Component {
                                 placeholder: 'Podaj numer telefonu'
                             },
                             value: this.state.PhoneNumber,
-                            validation: {
-                                required: true,
-                                minLength: 6
-                            },
-                            valid: false,
-                            touched: false
-                        },
-                        CreditCardNumber: {
-                            elementType: 'input',
-                            elementConfig: {
-                                type: 'number',
-                                placeholder: 'Podaj numer karty kredytowej'
-                            },
-                            value: this.state.CreditCardNumber,
                             validation: {
                                 required: true,
                                 minLength: 6
@@ -364,6 +338,11 @@ class Profile extends Component {
 
         if (rules.isEmail) {
             const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = pattern.test(value) && isValid
+        }
+
+        if (rules.isZipCode) {
+            const pattern = /[0-9]{2}[-][0-9]{3}/
             isValid = pattern.test(value) && isValid
         }
 
@@ -403,34 +382,54 @@ class Profile extends Component {
             this.state.dataForm.ZipCode.value,
             this.state.dataForm.Password.value,
             this.state.dataForm.PhoneNumber.value,
-            this.state.dataForm.CreditCardNumber.value
-            /*
-            'dominikgoral@onet.pl',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '', 
-            '',
-            '',
-            '',
-            ''
-            */
         ) 
     }
 
-    render() {
-        console.log('Email:' + this.state.dataForm.Email.value)
-        const customerData = []
-        for(let key in this.state.dataForm) {
-            customerData.push({
-                id: key,
-                config: this.state.dataForm[key]
-            })
-        }
+    switchEditMode = () => {
+        this.setState({ editMode: !this.state.editMode })
+    }
 
-        const formDataCustomer = customerData.map(formElement => (
+    render() {
+        const personalData = []
+        const addressData = []
+        const password = []
+        // Personal data like FirstName, Surname
+        personalData.push({
+            id: 1,
+            config: this.state.dataForm.FirstName
+        })
+        personalData.push({
+            id: 2,
+            config: this.state.dataForm.Surname
+        })
+        // Address data like city, street...
+        addressData.push({
+            id: 3,
+            config: this.state.dataForm.City
+        })
+        addressData.push({
+            id: 4,
+            config: this.state.dataForm.Street
+        })
+        addressData.push({
+            id: 5,
+            config: this.state.dataForm.HomeNumber
+        })
+        addressData.push({
+            id: 6,
+            config: this.state.dataForm.FlatNumber
+        })
+        addressData.push({
+            id: 7,
+            config: this.state.dataForm.ZipCode
+        })
+        // Password data
+        password.push({
+            id: 8,
+            config: this.state.dataForm.Password
+        })
+
+        const personalDataCustomer = personalData.map(formElement => (
             <Input 
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -439,18 +438,53 @@ class Profile extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
+                disabled={this.state.editMode}
+                changed={(event) => this.inputChangedHandler( event, formElement.id )}
+            />
+        ))
+
+        const addressDataCustomer = addressData.map(formElement => (
+            <Input 
+                key={formElement.id}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                disabled={this.state.editMode}
+                changed={(event) => this.inputChangedHandler( event, formElement.id )}
+            />
+        ))
+
+        const passwordDataCustomer = password.map(formElement => (
+            <Input 
+                key={formElement.id}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                disabled={this.state.editMode}
                 changed={(event) => this.inputChangedHandler( event, formElement.id )}
             />
         ))
 
         return (
             <Aux>
-                <center><FaUser style={{ fontSize:'300%', marginTop:'50px' }}/></center>
+                <center><span><FaUser style={{ fontSize:'300%', marginTop:'50px' }}/></span></center>
                 <div className={classes.ProfileBox}>
-                    <form onSubmit={this.submitHandler}> 
-                        {formDataCustomer}
-                        <Button>Potwierdź zmiany</Button>
-                    </form>
+                    <AiFillEdit onClick={this.switchEditMode}/>
+                    <div className={classes.PersonalDataSection}>
+                        {personalDataCustomer}
+                    </div>
+                    <div className={classes.AddressDataSection}>
+                        {addressDataCustomer}
+                    </div>
+                    <div className={classes.PasswordDataSection}>
+                        {passwordDataCustomer}
+                    </div>
                 </div>
             </Aux>
         )

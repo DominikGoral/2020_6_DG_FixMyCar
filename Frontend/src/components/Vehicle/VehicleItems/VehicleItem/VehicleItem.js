@@ -5,9 +5,9 @@ import Button from '../../../UI/Button/Button'
 
 const vehicleItem = (props) => {
     return (
-        <div className={classes.Workshop}>
-            <p>{props.name}</p>
-            <p>{props.category}</p>
+        <div className={classes.Vehicle}>
+            <span>{props.name}&nbsp;</span>
+            <span>{props.category}</span>
         </div>
     )
 }

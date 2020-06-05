@@ -15,6 +15,7 @@ const input = (props) => {
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
+                disabled={props.editMode}
                 onChange={props.changed} />;
             break;
         case ( 'textarea' ):
@@ -22,6 +23,7 @@ const input = (props) => {
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
+                disabled={props.editMode}
                 onChange={props.changed} />;
             break;
         case ( 'select' ):
@@ -29,6 +31,7 @@ const input = (props) => {
                 <select
                     className={inputClasses.join(' ')}
                     value={props.value}
+                    disabled={props.editMode}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
                         <option key={option.value} value={option.value}>
@@ -43,6 +46,7 @@ const input = (props) => {
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
+                disabled={props.editMode}
                 onChange={props.changed} />;
     }
 

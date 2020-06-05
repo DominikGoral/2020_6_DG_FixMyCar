@@ -263,23 +263,25 @@ class VehicleItems extends Component {
         return (
             <Aux>
                 <div>
-                    <p style={{textAlign:"center"}}>Pojazdy</p>
-                    <Button className={classes.AddVehicle} clicked={this.showHideForm}>Dodaj pojazd</Button>
-                    {this.state.adding 
-                        ? <form onSubmit={this.addVehicle}>
-                            {formVehicle}
-                          <Button>DODAJ</Button>
-                          </form> 
-                        : null
-                    }
-                    {this.state.vehicles.map(vehicle => (
-                    <Link to={'/vehicle/' + vehicle.VIN_Number} key={vehicle.VIN_Number}>
-                        <VehicleItem    
-                            name={vehicle.VehicleName}
-                            category={vehicle.VehicleModel}                                                            
-                        >
-                        </VehicleItem>
-                    </Link>))}
+                    <div className={classes.Vehicles}>
+                        {this.state.vehicles.map(vehicle => (
+                        <Link to={'/vehicle/' + vehicle.VIN_Number} key={vehicle.VIN_Number}>
+                            <VehicleItem    
+                                name={vehicle.VehicleName}
+                                category={vehicle.VehicleModel}                                                            
+                            >
+                            </VehicleItem>
+                        </Link>))}
+                    </div>
+                    <div className={classes.ButtonAddSection}>
+                        <div className={classes.ButtonAdd} onClick={this.showHideForm}><p>+</p></div>
+                        {this.state.adding 
+                            ? <form onSubmit={this.addVehicle}>
+                                {formVehicle}
+                            </form> 
+                            : null
+                        }
+                    </div>
                 </div>
             </Aux>
         )
