@@ -7,11 +7,10 @@
 }
 
 .TimeLine {
-    position: absolute;
-    width: 71%;
+    position: relative;
+    width: 90%;
     border-bottom: 2px solid rgb(255, 255, 255);
-    margin-left: 3%;
-    
+    margin: 1% auto 0;
 }
 
 #DatePickerInput {

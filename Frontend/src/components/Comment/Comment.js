@@ -3,13 +3,14 @@ import { AiFillEdit, AiFillDelete, AiFillStar } from "react-icons/ai";
 
 import classes from './Comment.css'
 import axios from 'axios';
+import Aux from '../../hoc/Auxiliary/Auxiliary'
 import { BASEPATH } from '../../config';
 
 class Comment extends Component {
     state = {
         comment: this.props.CommentContent,
         rate: this.props.Rate,
-        editMode: true
+        editMode: false
     }
 
 
@@ -22,10 +23,11 @@ class Comment extends Component {
 
     editButtonHandler = () => {
         if(this.state.editMode === true) {
+            this.editComment()
             this.setState({ editMode: false })
         } else {
             this.setState({ editMode: true })
-            this.editComment()
+            
         }
     }
 
@@ -67,8 +69,21 @@ class Comment extends Component {
                 <input 
                     value={this.state.comment}
                     onChange={e => this.setState({ comment: e.target.value })}
-                    disabled={this.state.editMode}
+                    disabled={!this.state.editMode}
                 />
+                {this.state.editMode
+                    ? <Aux>
+                        <p style={{ marginLeft: '10%' }}>Nowa ocena</p>
+                        <select className={classes.RateOptions} onChange={e => this.setState({ rate: e.target.value })}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </Aux>
+                    : null
+                }
             </div>
         )
     }

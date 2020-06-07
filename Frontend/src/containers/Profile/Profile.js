@@ -490,7 +490,6 @@ class Profile extends Component {
                     <p>Zmień hasło</p>
                     <div className={classes.PasswordDataSection}>
                         <Input 
-                            elementConfig={'text', 'ZIemniaki'}
                             value={this.state.OldPassword}
                             changed={(event) => this.setState({ OldPassword: event.target.value })}
                         />
