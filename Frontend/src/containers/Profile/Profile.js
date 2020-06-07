@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { FaUser } from 'react-icons/fa'
-import { AiFillEdit } from 'react-icons/ai'
+import { AiFillEdit, AiFillTool } from 'react-icons/ai'
 import * as actions from '../../store/actions/index'
 import { BASEPATH } from '../../config'
 
@@ -26,6 +26,9 @@ class Profile extends Component {
         FlatNumber: null,
         ZipCode: null,
         editMode: false,
+        NewPassword: '',
+        ConfirmNewPassword: '',
+        OldPassword: '',
         dataForm: {
             FirstName: {
                 elementType: 'input',
@@ -392,7 +395,7 @@ class Profile extends Component {
     render() {
         const personalData = []
         const addressData = []
-        const password = []
+        // const password = []
         // Personal data like FirstName, Surname
         personalData.push({
             id: 1,
@@ -424,10 +427,10 @@ class Profile extends Component {
             config: this.state.dataForm.ZipCode
         })
         // Password data
-        password.push({
-            id: 8,
-            config: this.state.dataForm.Password
-        })
+        // password.push({
+        //     id: 8,
+        //     config: this.state.dataForm.Password
+        // })
 
         const personalDataCustomer = personalData.map(formElement => (
             <Input 
@@ -457,33 +460,51 @@ class Profile extends Component {
             />
         ))
 
-        const passwordDataCustomer = password.map(formElement => (
-            <Input 
-                key={formElement.id}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                disabled={this.state.editMode}
-                changed={(event) => this.inputChangedHandler( event, formElement.id )}
-            />
-        ))
+        // const passwordDataCustomer = password.map(formElement => (
+        //     <Input 
+        //         key={formElement.id}
+        //         elementType={formElement.config.elementType}
+        //         elementConfig={formElement.config.elementConfig}
+        //         value={formElement.config.value}
+        //         invalid={!formElement.config.valid}
+        //         shouldValidate={formElement.config.validation}
+        //         touched={formElement.config.touched}
+        //         disabled={this.state.editMode}
+        //         changed={(event) => this.inputChangedHandler( event, formElement.id )}
+        //     />
+        // ))
 
         return (
             <Aux>
                 <center><span><FaUser style={{ fontSize:'300%', marginTop:'50px' }}/></span></center>
                 <div className={classes.ProfileBox}>
-                    <AiFillEdit onClick={this.switchEditMode}/>
+                    {/* <AiFillEdit onClick={this.switchEditMode}/> */}
+                    <p>Dane personalne</p>
                     <div className={classes.PersonalDataSection}>
                         {personalDataCustomer}
                     </div>
+                    <p>Dane adresowe</p>
                     <div className={classes.AddressDataSection}>
                         {addressDataCustomer}
                     </div>
+                    <p>Zmień hasło</p>
                     <div className={classes.PasswordDataSection}>
-                        {passwordDataCustomer}
+                        <Input 
+                            elementConfig={'text', 'ZIemniaki'}
+                            value={this.state.OldPassword}
+                            changed={(event) => this.setState({ OldPassword: event.target.value })}
+                        />
+                        <Input 
+                            value={this.state.NewPassword}
+                            changed={(event) => this.setState({ NewPassword: event.target.value })}
+                        />
+                        <Input 
+                            value={this.state.ConfirmNewPassword}
+                            changed={(event) => this.setState({ ConfirmNewPassword: event.target.value })}
+                        />
+                        <div className={classes.ChangeButton}>
+                            <AiFillTool />
+                        </div>
                     </div>
                 </div>
             </Aux>

@@ -7,15 +7,30 @@
 
 .PersonalDataSection {
     padding: 2% 1%;
-    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
 }
 
 .AddressDataSection {
     padding: 2% 1%;
-    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
 }
 
 .PasswordDataSection {
     padding: 2% 1%;
-    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+}
+
+.ChangeButton {
+    width: 30px;
+    height: 30px;
+    margin-left: 70%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #95d5b2;
+}
+
+.ChangeButton:hover {
+    background-color: #69cc95;
 }

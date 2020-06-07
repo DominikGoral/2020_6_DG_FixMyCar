@@ -22,7 +22,9 @@
 
 .OptionBox {
     position: relative;
-    left: 77%;
+    margin-bottom: 1%;
+    overflow: hidden;
+    margin-left: 77%;
     animation: showOptions 0.5s linear;
 }
 
@@ -36,7 +38,16 @@
     width: 30px;
     height: 30px;
     border-radius: 15px;
-    background-color: grey;
+    background-color: #95d5b2;
+    transition: 0.2s linear;
+}
+
+.InfoButton:hover {
+    background-color: #67ac86;
+}
+
+.DeleteButton:hover {
+    background-color: #b90000;
 }
 
 @keyframes showOptions {

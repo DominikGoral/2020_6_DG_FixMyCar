@@ -290,7 +290,8 @@ class VehicleItems extends Component {
                         //     >
                         //     </VehicleItem>
                         // </Link>
-                        <VehicleItem    
+                        <VehicleItem   
+                                vin_Number={vehicle.VIN_Number}
                                 name={vehicle.VehicleName}
                                 category={vehicle.VehicleModel}                                                            
                             >
