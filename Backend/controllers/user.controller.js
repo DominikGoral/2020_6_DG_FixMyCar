@@ -1,4 +1,26 @@
 const { Customer, Address } = require('../sequelize')
+var bcrypt = require('bcryptjs')
+
+exports.updatePassword = (req, res) => {
+    var passwordIsValid = bcrypt.compareSync(
+        req.body.oldPassword,
+        req.body.password
+    )
+    if(!passwordIsValid) {
+        res.status(200).send({ toastType: 'error', message: 'Stare hasło jest niepoprawne!'})
+    } else {
+        Customer.update({
+            Password: bcrypt.hashSync(req.body.newPassword, 8)
+        }, {
+            where: {
+                Email: req.body.userId
+            }
+        })
+        .then(response => {
+            res.status(200).send({ toastType: 'success', message: 'Hasło zostało zaktualizowane!' })
+        })
+    }
+}
 
 exports.allAccess = (req, res) => {
     res.status(200).send('Dostep publiczny')

@@ -26,4 +26,6 @@ module.exports = function(app) {
     )
 
     app.put('/me', controller.updateData)
+
+    app.put('/me/update-password', controller.updatePassword)
 }

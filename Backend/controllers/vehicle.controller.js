@@ -51,10 +51,10 @@ exports.addVehicle = (req, res) => {
         Type: req.body.type,
         Id_customer: req.body.userId
     }).then(response => {
-        res.status(200).send(response)
+        res.status(200).send({ message: "Pojazd został dodany!" })
     })
     .catch(error => {
-        res.send(error)
+        res.status(401).send({ message: "Wystąpił błąd" })
     })
 }
 
@@ -66,5 +66,8 @@ exports.deleteVehicle = (req, res) => {
     })
     .then(response => {
         response.destroy()
+    })
+    .then(response => {
+        res.status(200).send({ message: "Pojazd został usunięty!" })
     })
 }
