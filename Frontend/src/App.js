@@ -23,6 +23,7 @@ class App extends Component {
       <Switch>
         <Route path="/auth" component={Auth} />
         <Route path="/workshop/all" component={WorkshopItems} />
+        <Route path="/workshop/:id" component={WorkshopDetails}/>
         <Route path="/" component={WorkshopItems}/>
         <Redirect to="/auth"/>
       </Switch>
@@ -35,7 +36,7 @@ class App extends Component {
           <Route path="/logout" component={Logout}/>
           <Route path="/mechanic/" component={MechanicsDashboard}/>
           <Route path="/mechanic/workshop/add-new" component={AddWorkshop}/>
-          <Redirect to="/" />
+          <Redirect to="/workshop/all" />
         </Switch>
       )
     } else if (this.props.isAuthenticated && this.props.customer) {

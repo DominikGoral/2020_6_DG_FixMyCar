@@ -11,6 +11,7 @@ import classes from './Profile.css'
 import Aux from '../../hoc/Auxiliary/Auxiliary'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
+import Toast from '../../components/UI/Toast/Toast'
 
 class Profile extends Component {
     state = {
@@ -29,6 +30,8 @@ class Profile extends Component {
         NewPassword: '',
         ConfirmNewPassword: '',
         OldPassword: '',
+        toastType: '',
+        responseMessage: '',
         dataForm: {
             FirstName: {
                 elementType: 'input',
@@ -388,6 +391,24 @@ class Profile extends Component {
         ) 
     }
 
+    changePassword = (event) => {
+        if(this.state.NewPassword === this.state.ConfirmNewPassword) {
+            event.preventDefault()
+            axios.put(BASEPATH + '/me/update-password', {
+                userId: this.props.userId,
+                password: this.state.Password,
+                oldPassword: this.state.OldPassword,
+                newPassword: this.state.NewPassword
+            })
+            .then(response => {
+                console.log(response)
+                this.setState({ toastType: response.data.toastType, responseMessage: response.data.message })
+            })
+        } else {
+            this.setState({ toastType: 'error', responseMessage: 'Podane nowe hasła się różnią!' })
+        }
+    }
+
     switchEditMode = () => {
         this.setState({ editMode: !this.state.editMode })
     }
@@ -476,6 +497,7 @@ class Profile extends Component {
 
         return (
             <Aux>
+                { this.state.responseMessage ? <Toast toastType={this.state.toastType} errorMessage={this.state.responseMessage} /> : null }
                 <center><span><FaUser style={{ fontSize:'300%', marginTop:'50px' }}/></span></center>
                 <div className={classes.ProfileBox}>
                     {/* <AiFillEdit onClick={this.switchEditMode}/> */}
@@ -489,20 +511,31 @@ class Profile extends Component {
                     </div>
                     <p>Zmień hasło</p>
                     <div className={classes.PasswordDataSection}>
-                        <Input 
+                        <p>Stare hasło</p>
+                        <input
+                            className={classes.PasswordInput}
+                            type="password" 
                             value={this.state.OldPassword}
-                            changed={(event) => this.setState({ OldPassword: event.target.value })}
+                            onChange={(event) => this.setState({ OldPassword: event.target.value })}
                         />
-                        <Input 
+                        {}
+                        <p>Nowe hasło</p>
+                        <input 
+                            className={classes.PasswordInput}
+                            type="password" 
                             value={this.state.NewPassword}
-                            changed={(event) => this.setState({ NewPassword: event.target.value })}
+                            onChange={(event) => this.setState({ NewPassword: event.target.value })}
                         />
-                        <Input 
+                        <p>Powtórz nowe hasło</p>
+                        <input
+                            className={classes.PasswordInput}
+                            type="password" 
                             value={this.state.ConfirmNewPassword}
-                            changed={(event) => this.setState({ ConfirmNewPassword: event.target.value })}
+                            onChange={(event) => this.setState({ ConfirmNewPassword: event.target.value })}
                         />
+                        {this.state.NewPassword !== this.state.ConfirmNewPassword ? <p style={{ color: 'red' }}>Podane hasła nie są takie same!</p> : null}
                         <div className={classes.ChangeButton}>
-                            <AiFillTool />
+                            <AiFillTool onClick={e => this.changePassword(e)}/>
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,16 @@
   box-sizing: border-box;
   background-color: #95d5b2;
   border-radius: 20px;
+  animation: showLoginForm 0.5s;
+}
+
+@keyframes showLoginForm {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .UserIcon {
