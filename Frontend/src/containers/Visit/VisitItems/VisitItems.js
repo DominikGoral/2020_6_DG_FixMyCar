@@ -81,6 +81,7 @@ class VisitItems extends Component {
                                     visitDate={upcomingVisit.VisitDateStart.substring(0, 10) + " " + upcomingVisit.VisitDateStart.substring(11, 16)}
                                     price={upcomingVisit.TotalPrice}
                                     description={upcomingVisit.VisitDescription}
+                                    upcomingVisit
                                 />
                             )) : <p>Brak nadchodzących wizyt.</p>}
                         </div>

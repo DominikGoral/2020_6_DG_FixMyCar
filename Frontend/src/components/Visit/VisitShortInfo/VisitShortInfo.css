@@ -18,7 +18,7 @@
     margin-bottom: 1%;
     overflow: hidden;
     margin-left: 77%;
-    animation: showOptions 0.5s linear;
+    animation: showOptions 0.5s ease-out;
 }
 
 .InfoButton,
@@ -46,9 +46,6 @@
 @keyframes showOptions {
     0% {
         margin-top: -2%;
-    }
-    85% {
-        margin-top: 2%;
     }
     100% {
         margin-top: 0;

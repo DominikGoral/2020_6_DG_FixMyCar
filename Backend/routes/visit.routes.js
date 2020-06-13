@@ -16,6 +16,8 @@ module.exports = function(app) {
 
     app.get('/visit/all', controller.allWorkshopVisit)
 
+    app.get('/customer/visit/all', controller.allCustomerVisit)
+
     app.post('/visit/new-visit', controller.addNewVisit)
 
     app.delete('/mechanic/visit/:id', controller.deleteVisit)

@@ -6,7 +6,7 @@ exports.allVisits = (req, res) => {
     nextDay.setDate(nextDay.getDate() + 1)
     Visit.findAll({
         where: {
-            VisitDate: {
+            VisitDateStart: {
                 [Op.gte]: new Date(req.query.day),
                 [Op.lte]: nextDay
             }, 
@@ -54,6 +54,17 @@ exports.allWorkshopVisit = (req, res) => {
                 [Op.lte]: nextDay
             }, 
             Id_workshop: req.query.workshop
+        }
+    })
+    .then(response => {
+        res.status(200).send(response)
+    })
+}
+
+exports.allCustomerVisit = (req, res) => {
+    Visit.findAll({
+        where: { 
+            Id_customer: req.query.id_customer
         }
     })
     .then(response => {
