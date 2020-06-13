@@ -6,6 +6,7 @@ import Aux from '../../../hoc/Auxiliary/Auxiliary'
 import MechanicWorkshops from '../MechanicWorkshops/MechanicWorkshops'
 import MechanicVisits from '../MechanicsVisits/MechanicVisits'
 import AddWorkshop from '../MechanicWorkshops/AddWorkshop/AddWorkshop'
+import WorkshopDetails from '../../Workshop/WorkshopDetails/WorkshopDetails'
 
 class MechanicsDashboard extends Component {
     state = {
@@ -19,8 +20,6 @@ class MechanicsDashboard extends Component {
                 return (<MechanicWorkshops userId={this.props.userId}></MechanicWorkshops>)
             case 1:
                 return (<MechanicVisits userId={this.props.userId}/>)
-            case 2:
-                return (<div className={classes.div2}></div>)
         }
     }
 
@@ -32,7 +31,7 @@ class MechanicsDashboard extends Component {
                         <ul style={{ listStyle: "none" }}>
                             <li><div className={classes.OptionItem} onClick={() => {this.setState({activeItem: 0})}}>Warsztaty</div></li>
                             <li><div className={classes.OptionItem} onClick={() => {this.setState({activeItem: 1})}}>Wizyty</div></li>
-                            <li><div className={classes.OptionItem} onClick={() => {this.setState({activeItem: 2})}}>Opinie</div></li>
+                            {/* <li><div className={classes.OptionItem} onClick={() => {this.setState({activeItem: 2})}}>Opinie</div></li> */}
                         </ul>
                     </div>
                     <div className={classes.Content}>

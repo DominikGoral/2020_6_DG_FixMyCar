@@ -12,7 +12,7 @@ const navigationItems = (props) => {
             {(props.isAuthenticated && props.mechanic)
                 ? <Aux>
                     <NavigationItem link="/workshop/all"><BsHouseDoorFill/></NavigationItem>
-                    <NavigationItem link="/workshop">Warsztat</NavigationItem>
+                    {/* <NavigationItem link="/workshop">Warsztat</NavigationItem> */}
                     <NavigationItem link="/logout">Wyloguj</NavigationItem>
                     <NavigationItem link="/mechanic/">Warsztaty</NavigationItem>
                 </Aux>
@@ -24,6 +24,7 @@ const navigationItems = (props) => {
                     <NavigationItem link="/workshop/all">Warsztaty</NavigationItem>
                     <NavigationItem link="/me">Mój profil</NavigationItem>
                     <NavigationItem link="/vehicle/all">Moje pojazdy</NavigationItem>
+                    <NavigationItem link="/visit/all">Moje wizyty</NavigationItem>
                     <NavigationItem link="/logout">Wyloguj</NavigationItem>
                 </Aux>
                 : null

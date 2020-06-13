@@ -1,5 +1,56 @@
 .VisitShoftInfo {
-    padding: 5px;
-    border-radius: 2px;
+    width: 90%;
+    margin: 1% auto;
+    padding: 2% 3%;
+    border-radius: 20px;
+    background-color: white;
     box-shadow: 0px 3px 2px 0px rgba(145,145,145,1);
+}
+
+.DescriptionBox {
+    width: 80%;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.726);
+}
+
+.OptionBox {
+    position: relative;
+    margin-bottom: 1%;
+    overflow: hidden;
+    margin-left: 77%;
+    animation: showOptions 0.5s linear;
+}
+
+.InfoButton,
+.DeleteButton {
+    float: left;
+    display: flex;
+    margin-right: 1%;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #95d5b2;
+    transition: 0.2s linear;
+}
+
+.InfoButton:hover {
+    background-color: #67ac86;
+}
+
+.DeleteButton:hover {
+    background-color: #b90000;
+}
+
+@keyframes showOptions {
+    0% {
+        margin-top: -2%;
+    }
+    85% {
+        margin-top: 2%;
+    }
+    100% {
+        margin-top: 0;
+    }
 }

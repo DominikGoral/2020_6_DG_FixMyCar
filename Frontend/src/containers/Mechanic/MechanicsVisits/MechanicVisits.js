@@ -52,6 +52,7 @@ class MechanicVisits extends Component {
                 nextDay: this.state.nextDay
             }
         })
+        console.log('wizyty')
         console.log(visitsData)
         return visitsData
     }
@@ -77,7 +78,7 @@ class MechanicVisits extends Component {
             <div>
                 <div className={classes.VisitTime} style={{  }}>
                     <p style={{ display: 'inline' }}>
-                        {visitElement.visit.VisitDate.substring(11, 16)}
+                        {visitElement.visit.VisitDateStart.substring(11, 16)}
                     </p>
                     <p style={{ display: 'inline', marginLeft: '80%' }}><AiOutlineClose className={classes.Icons} onClick={e => this.deleteVisit(visitElement.visit.VisitID)}/></p> 
                     {this.state.modifyHour 
@@ -121,8 +122,8 @@ class MechanicVisits extends Component {
                 </div>
                 <div>
                     {this.state.visits ? visits : null}
-                    <button className={classes.AddVisitButton} onClick={e => this.setState({ showAddVisitForm: !this.state.showAddVisitForm })}><AiFillPlusCircle/></button>
-                    <MechanicAddVisit />
+                    {/* <button className={classes.AddVisitButton} onClick={e => this.setState({ showAddVisitForm: !this.state.showAddVisitForm })}><AiFillPlusCircle/></button> */}
+                    {/* <MechanicAddVisit /> */}
                 </div>
             </Aux>
         )

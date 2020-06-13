@@ -35,20 +35,20 @@ class WorkshopDetails extends Component {
         const location = homeNumber + ' ' + street + ' ' + city
         console.log(location)
         
-        // axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        //     params: {
-        //         address: location,
-        //         key: 'AIzaSyB_JlaAtwxcfJlOQeDTI1PRUPBBxV_2dR0'
-        //     }
-        // })
-        // .then(response => {
-        //     console.log(response.data.results[0].geometry.location)
-        //     const location = response.data.results[0].geometry.location
-        //     this.setState({
-        //         latitude: location.lat,
-        //         longitude: location.lng
-        //     })
-        // })
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: location,
+                key: 'AIzaSyB_JlaAtwxcfJlOQeDTI1PRUPBBxV_2dR0'
+            }
+        })
+        .then(response => {
+            console.log(response.data.results[0].geometry.location)
+            const location = response.data.results[0].geometry.location
+            this.setState({
+                latitude: location.lat,
+                longitude: location.lng
+            })
+        })
         
     }
 
@@ -138,7 +138,7 @@ class WorkshopDetails extends Component {
                         <Schedule nip={this.state.NIP}/>
                     </div>
                     <div className={classes.Description}>
-                        <p style={{fontSize:'200%', marginLeft:'10%'}}>O nas</p>
+                        <p style={{fontSize:'200%'}}>O NAS</p>
                         <p>{this.state.Description}</p>
                     </div>
                     <div className={classes.Comments}>
@@ -146,7 +146,7 @@ class WorkshopDetails extends Component {
                         <textarea className={classes.CommentInput} 
                             onChange={e => this.setState({ newComment: e.target.value })}
                             rows="4"
-                            cols="125"
+                            cols="130"
                             placeholder="Dodaj komentarz..."
                         />
                         <p style={{float: 'left', marginLeft: '3%'}}>Ocena: </p>

@@ -303,7 +303,7 @@ class VehicleItems extends Component {
                         {this.state.adding 
                             ? <form onSubmit={this.addVehicle}>
                                 {formVehicle}
-                                <button onClick={e => this.addVehicle(e)}>Dodaj</button>
+                                <button className={classes.AddVehicleButton} onClick={e => this.addVehicle(e)}>Dodaj</button>
                             </form> 
                             : null
                         }

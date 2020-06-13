@@ -26,7 +26,7 @@ class Profile extends Component {
         HomeNumber: null,
         FlatNumber: null,
         ZipCode: null,
-        editMode: false,
+        editMode: true,
         NewPassword: '',
         ConfirmNewPassword: '',
         OldPassword: '',
@@ -375,18 +375,14 @@ class Profile extends Component {
         console.log(this.state.Email)
     }
 
-    submitHandler = (event) => {
-        event.preventDefault()
+    submitHandler = () => {
+        // event.preventDefault()
         this.props.onDataUpdate(
-            this.state.dataForm.Email.value,
-            this.state.dataForm.FirstName.value,
-            this.state.dataForm.Surname.value,
             this.state.dataForm.City.value,
             this.state.dataForm.Street.value,
             this.state.dataForm.HomeNumber.value,
             this.state.dataForm.FlatNumber.value, 
             this.state.dataForm.ZipCode.value,
-            this.state.dataForm.Password.value,
             this.state.dataForm.PhoneNumber.value,
         ) 
     }
@@ -409,8 +405,13 @@ class Profile extends Component {
         }
     }
 
-    switchEditMode = () => {
-        this.setState({ editMode: !this.state.editMode })
+    switchEditMode = (e) => {
+        if(this.state.editMode === false) {
+            this.submitHandler()
+            this.setState({ editMode: true })
+        } else {
+            this.setState({ editMode: false })
+        }
     }
 
     render() {
@@ -419,33 +420,37 @@ class Profile extends Component {
         // const password = []
         // Personal data like FirstName, Surname
         personalData.push({
-            id: 1,
+            id: "FirstName",
             config: this.state.dataForm.FirstName
         })
         personalData.push({
-            id: 2,
+            id: "Surname",
             config: this.state.dataForm.Surname
         })
         // Address data like city, street...
         addressData.push({
-            id: 3,
+            id: "City",
             config: this.state.dataForm.City
         })
         addressData.push({
-            id: 4,
+            id: "Street",
             config: this.state.dataForm.Street
         })
         addressData.push({
-            id: 5,
+            id: "HomeNumber",
             config: this.state.dataForm.HomeNumber
         })
         addressData.push({
-            id: 6,
+            id: "FlatNumber",
             config: this.state.dataForm.FlatNumber
         })
         addressData.push({
-            id: 7,
+            id: "ZipCode",
             config: this.state.dataForm.ZipCode
+        })
+        addressData.push({
+            id: "PhoneNumber",
+            config: this.state.dataForm.TelephoneNumber
         })
         // Password data
         // password.push({
@@ -462,7 +467,7 @@ class Profile extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                disabled={this.state.editMode}
+                editMode="true"
                 changed={(event) => this.inputChangedHandler( event, formElement.id )}
             />
         ))
@@ -476,7 +481,7 @@ class Profile extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                disabled={this.state.editMode}
+                editMode={this.state.editMode}
                 changed={(event) => this.inputChangedHandler( event, formElement.id )}
             />
         ))
@@ -505,7 +510,7 @@ class Profile extends Component {
                     <div className={classes.PersonalDataSection}>
                         {personalDataCustomer}
                     </div>
-                    <p>Dane adresowe</p>
+                    <span>Dane adresowe</span><span><AiFillEdit className={classes.editAddressDataButton} onClick={e => this.switchEditMode(e)}/></span>
                     <div className={classes.AddressDataSection}>
                         {addressDataCustomer}
                     </div>

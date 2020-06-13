@@ -16,6 +16,7 @@ import VehicleDetails from './containers/Vehicles/VehicleDetails/VehicleDetails'
 import MechanicsWorkshops from './containers/Mechanic/MechanicWorkshops/MechanicWorkshops';
 import MechanicsDashboard from './containers/Mechanic/MechanicsDashboard/MechanicsDashboard';
 import AddWorkshop from './containers/Mechanic/MechanicWorkshops/AddWorkshop/AddWorkshop';
+import VisitItems from './containers/Visit/VisitItems/VisitItems';
 
 class App extends Component {
   render() {
@@ -36,7 +37,8 @@ class App extends Component {
           <Route path="/logout" component={Logout}/>
           <Route path="/mechanic/" component={MechanicsDashboard}/>
           <Route path="/mechanic/workshop/add-new" component={AddWorkshop}/>
-          <Redirect to="/workshop/all" />
+          <Route path="/workshop/:id" component={WorkshopDetails}/>
+          <Redirect to="/mechanic/" />
         </Switch>
       )
     } else if (this.props.isAuthenticated && this.props.customer) {
@@ -47,6 +49,7 @@ class App extends Component {
           <Route path="/workshop/:id" component={WorkshopDetails}/>
           <Route path="/vehicle/all" component={VehicleItems} />
           <Route path="/vehicle/:id" component={VehicleDetails}/>
+          <Route path="/visit/all" component={VisitItems}/>
           <Route path="/me" component={Profile} />
           <Redirect to="/workshop/all" />
         </Switch>

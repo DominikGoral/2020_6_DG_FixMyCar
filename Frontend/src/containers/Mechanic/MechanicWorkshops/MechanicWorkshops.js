@@ -43,7 +43,7 @@ class MechanicsWorkshops extends Component {
             })
         }
         const workshops = workshopsData.map(workshop => (
-            <Link to={'/workshop/' + workshop.NIP} key={workshop.NIP}>
+            <Link to={'/workshop/' + workshop.config.NIP} key={workshop.NIP}>
                 <WorkshopItem    
                     name={workshop.config.WorkshopName}
                     category={workshop.config.Category}                                                            

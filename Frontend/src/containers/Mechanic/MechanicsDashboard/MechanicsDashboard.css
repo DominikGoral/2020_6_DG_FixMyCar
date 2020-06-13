@@ -5,7 +5,7 @@
 
 .OptionItem:hover,
 .OptionItem:active {
-    background-color: #407ca1;
+    background-color: #d8f3dc;
 }
 
 .Options {
@@ -13,7 +13,7 @@
     margin-top: 10vh;
     width: 10%;
     margin-left: 5%;
-    background-color: #7eb5d8;
+    background-color: #95d5b2;
     opacity: 0.8;
     border-radius: 5px;
 }
@@ -24,6 +24,6 @@
     width: 70%;
     margin-left: 5%;
     padding: 2% 0;
-    background-color: #7eb5d8;
+    background-color: #95d5b2;
     border-radius: 5px;
 }

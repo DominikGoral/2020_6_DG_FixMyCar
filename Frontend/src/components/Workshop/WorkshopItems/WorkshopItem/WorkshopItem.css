@@ -1,14 +1,27 @@
 .Workshop {
-    padding-left: 10px;
+    padding: 10px;
     margin-bottom: 1%;
+    box-sizing: border-box;
     background-color: #fff;
     width: 80%;
+    min-height: 200px;
     margin-left: 7.5%;
-    padding-left: 5%;
     border: 1px solid #cecece;
     opacity: 0.9;
     color: black;
     box-shadow: 4px 4px 5px 0px rgb(139, 139, 139);
+}
+
+.WorkshopImage {
+    width: 190px;
+    height: 190px;
+    background-color: violet;
+    float: left;
+}
+
+.WorkshopInfo {
+    padding-left: 10%;
+    border-bottom: 2px solid black;
 }
 
 .MoreInfoButton {

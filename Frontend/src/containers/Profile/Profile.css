@@ -47,3 +47,11 @@
     margin-bottom: 1%;
     color:#000;
 }
+
+.editAddressDataButton {
+    margin-left: 73%;
+}
+
+.editAddressDataButton:hover {
+    color: white;
+}

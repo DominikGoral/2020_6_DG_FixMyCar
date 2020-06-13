@@ -28,3 +28,12 @@
 .ButtonAdd:hover {
     background-color: #d3c015;
 }
+
+.AddVehicleButton {
+    padding: 1% 2%;
+    border-radius: 15px;
+    width: 100px;
+    height: 30px;
+    margin-left: 70%;
+    background-color: #95d5b2;
+}

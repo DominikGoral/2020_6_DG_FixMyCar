@@ -5,7 +5,7 @@ import Button from '../../../UI/Button/Button'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 import { TiDelete } from "react-icons/ti"
-import { MdModeEdit } from "react-icons/md"
+import { AiFillInfoCircle } from "react-icons/ai"
 import Aux from '../../../../hoc/Auxiliary/Auxiliary'
 import Toast from '../../../UI/Toast/Toast'
 import { BASEPATH } from '../../../../config'
@@ -44,7 +44,7 @@ class VehicleItem extends Component {
                 <div>
                     {this.state.showOptions 
                         ? <div className={classes.OptionBox}>
-                            <div className={classes.InfoButton}><Link to={'/vehicle/' + this.props.vin_Number} key={this.props.vin_Number}><MdModeEdit /></Link></div>
+                            <div className={classes.InfoButton}><Link to={'/vehicle/' + this.props.vin_Number} key={this.props.vin_Number}><AiFillInfoCircle /></Link></div>
                             <div className={classes.DeleteButton} onClick={this.deleteVehicle}><TiDelete /></div>
                         </div> 
                         : null

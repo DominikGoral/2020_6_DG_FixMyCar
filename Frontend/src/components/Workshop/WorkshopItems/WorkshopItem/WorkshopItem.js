@@ -7,8 +7,13 @@ import Button from '../../../UI/Button/Button'
 const workshopItem = (props) => {
     return (
         <div className={classes.Workshop}>
-            <p style={{ fontSize: '200%' }}>{props.name}</p>
-            <p>{props.category}</p>
+            <div className={classes.WorkshopImage}>
+
+            </div>
+            <div className={classes.WorkshopInfo}>
+                <p style={{ fontSize: '200%' }}>{props.name}</p>
+                <p>{props.category}</p>
+            </div>
             <BsChevronDoubleRight className={classes.MoreInfoButton}/>
         </div>
     )

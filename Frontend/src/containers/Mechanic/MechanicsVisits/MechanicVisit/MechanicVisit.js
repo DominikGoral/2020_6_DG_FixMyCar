@@ -17,6 +17,10 @@ class MechanicVisit extends Component {
         showInfo: false
     }
 
+    componentDidMount() {
+        // this.getVisitInfo()
+    }
+
     getVisitInfo = () => {
         if(!this.state.showInfo) {
             axios.get(BASEPATH + '/mechanic/visit/' + this.props.visitId)
@@ -33,8 +37,8 @@ class MechanicVisit extends Component {
                 })
             })
         }
-        
     }
+
 
     render() {
         return (
